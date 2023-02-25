@@ -10,5 +10,9 @@ package com.noname.model;
  * @author Minh
  */
 public class schedule {
-    
+    private int id;
+    private int film_id;
+    private int cinema_id;
+    private int room_id;
+    private String start_time;
 }

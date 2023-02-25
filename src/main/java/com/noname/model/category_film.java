@@ -10,5 +10,35 @@ package com.noname.model;
  * @author Minh
  */
 public class category_film {
+
+    private int id;
+    private int category_id;
+    private int film_id;
+
+    public int getId() {
+        return id;
+    }
     
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCategoryId() {
+        return category_id;
+    }
+
+    public void setCategoryId(int category_id) {
+        this.category_id = category_id;
+    }
+
+    public int getFilmId() {
+        return this.film_id;
+    }
+
+    public void setFilmId(int film_id) {
+        this.film_id = film_id;
+    }
+    
+    public category_film(){}
+
 }

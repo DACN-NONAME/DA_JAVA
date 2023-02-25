@@ -10,5 +10,8 @@ package com.noname.model;
  * @author Minh
  */
 public class booking {
-    
+    private int id;
+    private int user_id;
+    private String created_at;
+    private String updated_at;
 }

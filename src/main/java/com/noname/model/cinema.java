@@ -11,4 +11,8 @@ package com.noname.model;
  */
 public class cinema {
     
+    private int id;
+    private String name;
+    private String address;
+    
 }

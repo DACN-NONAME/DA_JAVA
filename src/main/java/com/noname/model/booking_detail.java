@@ -10,5 +10,9 @@ package com.noname.model;
  * @author Minh
  */
 public class booking_detail {
-    
+    private int id;
+    private int booking_id;
+    private int ticket_id;
+    private int schedule_id;
+    private String seat;
 }

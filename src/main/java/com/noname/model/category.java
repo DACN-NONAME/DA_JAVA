@@ -11,4 +11,7 @@ package com.noname.model;
  */
 public class category {
     
+    private int id;
+    private String name;
+    
 }

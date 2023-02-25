@@ -10,5 +10,7 @@ package com.noname.model;
  * @author Minh
  */
 public class ticket {
-    
+    private int id;
+    private int price;
+    private String type;
 }
