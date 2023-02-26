@@ -25,17 +25,59 @@ public class User {
     }
 
     /**
-     * @return the name
+     * @return the full_name
      */
-    public String getName() {
-        return name;
+    public String getFull_name() {
+        return full_name;
     }
 
     /**
-     * @param name the name to set
+     * @param full_name the full_name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     /**
@@ -52,21 +94,40 @@ public class User {
         this.address = address;
     }
 
+    /**
+     * @return the is_active
+     */
+    public int getIs_active() {
+        return is_active;
+    }
+
+    /**
+     * @param is_active the is_active to set
+     */
+    public void setIs_active(int is_active) {
+        this.is_active = is_active;
+    }
+
+    /**
+     * @return the created_at
+     */
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    /**
+     * @param created_at the created_at to set
+     */
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
     private int id;
-    private String name;
+    private String full_name;
+    private String email;
+    private String password;
+    private String phone;
     private String address;
-
-    public User() {
-    }
-
-    public User(String name, String address) {
-        this.name = name;
-        this.address = address;
-    }
-
-    public User(int id, String name, String address) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-    }
+    private int is_active;
+    private String created_at;
 }

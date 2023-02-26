@@ -9,7 +9,7 @@ package com.noname.model;
  *
  * @author Minh
  */
-public class country {
+public class Country {
 
     /**
      * @return the id
@@ -41,10 +41,10 @@ public class country {
     private int id;
     private String name;
 
-    public country() {
+    public Country() {
     }
 
-    public country(int id, String name) {
+    public Country(int id, String name) {
 
         this.id = id;
         this.name = name;

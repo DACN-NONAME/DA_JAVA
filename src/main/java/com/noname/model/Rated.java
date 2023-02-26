@@ -9,7 +9,7 @@ package com.noname.model;
  *
  * @author Minh
  */
-public class rated {
+public class Rated {
     
     
     /**
@@ -42,10 +42,10 @@ public class rated {
     private int id;
     private String name;
 
-    public rated() {
+    public Rated() {
     }
 
-    public rated(int id, String name) {
+    public Rated(int id, String name) {
 
         this.id = id;
         this.name = name;

@@ -21,7 +21,7 @@
 
         <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
-        <title>Boleto  - Online Ticket Booking Website HTML Template</title>
+        <title>Boleto  - Đặt vé phim trực tuyến</title>
 
 
     </head>
@@ -55,18 +55,10 @@
                     </div>
                     <ul class="menu">
                         <li>
-                            <a href="#0" class="active">Home</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="#0" class="active">Home One</a>
-                                </li>
-                                <li>
-                                    <a href="index-2.html">Home Two</a>
-                                </li>
-                            </ul>
+                            <a href="./">Home</a>
                         </li>
                         <li>
-                            <a href="#0">movies</a>
+                            <a href="./films">Phim</a>
                             <ul class="submenu">
                                 <li>
                                     <a href="movie-grid.html">Movie Grid</a>
@@ -95,78 +87,10 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#0">events</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="events.html">Events</a>
-                                </li>
-                                <li>
-                                    <a href="event-details.html">Event Details</a>
-                                </li>
-                                <li>
-                                    <a href="event-speaker.html">Event Speaker</a>
-                                </li>
-                                <li>
-                                    <a href="event-ticket.html">Event Ticket</a>
-                                </li>
-                                <li>
-                                    <a href="event-checkout.html">Event Checkout</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#0">sports</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="sports.html">Sports</a>
-                                </li>
-                                <li>
-                                    <a href="sport-details.html">Sport Details</a>
-                                </li>
-                                <li>
-                                    <a href="sports-ticket.html">Sport Ticket</a>
-                                </li>
-                                <li>
-                                    <a href="sports-checkout.html">Sport Checkout</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#0">pages</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="about.html">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="apps-download.html">Apps Download</a>
-                                </li>
-                                <li>
-                                    <a href="sign-in.html">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="sign-up.html">Sign Up</a>
-                                </li>
-                                <li>
-                                    <a href="404.html">404</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#0">blog</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="blog.html">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="blog-details.html">Blog Single</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
                             <a href="contact.html">contact</a>
                         </li>
                         <li class="header-button pr-0">
-                            <a href="sign-up.html">join us</a>
+                            <a href="./sign-in">Đăng nhập</a>
                         </li>
                     </ul>
                     <div class="header-bar d-lg-none">

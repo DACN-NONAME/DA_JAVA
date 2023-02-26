@@ -9,7 +9,7 @@ package com.noname.model;
  *
  * @author Minh
  */
-public class category_film {
+public class Category_film {
 
     private int id;
     private int category_id;
@@ -39,6 +39,6 @@ public class category_film {
         this.film_id = film_id;
     }
     
-    public category_film(){}
+    public Category_film(){}
 
 }

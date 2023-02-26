@@ -9,7 +9,7 @@ package com.noname.model;
  *
  * @author Minh
  */
-public class booking {
+public class Booking {
     private int id;
     private int user_id;
     private String created_at;

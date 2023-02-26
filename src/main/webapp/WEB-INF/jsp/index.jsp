@@ -5,14 +5,13 @@
     <div class="banner-bg bg_img bg-fixed" data-background="./assets/images/banner/banner01.jpg"></div>
     <div class="container">
         <div class="banner-content">
-            <h1 class="title  cd-headline clip"><span class="d-block">book your</span> tickets for 
+            <h1 class="title  cd-headline clip"><span class="d-block">đặt vé </span> xem
                 <span class="color-theme cd-words-wrapper p-0 m-0">
-                    <b class="is-visible">Movie</b>
-                    <b>Event</b>
-                    <b>Sport</b>
+                    <b class="is-visible">Phim</b>
                 </span>
+                <span class="d-block">hot hôm nay</span>
             </h1>
-            <p>Safe, secure, reliable ticketing.Your ticket to live entertainment!</p>
+            <p>Tiện lợi, nhanh chóng!</p>
         </div>
     </div>
 </section>
@@ -287,21 +286,21 @@
             <div class="col-lg-9">
                 <div class="article-section padding-bottom">
                     <div class="section-header-1">
-                        <h2 class="title">nguyễn</h2>
-                        <a class="view-all" href="movie-grid.html">View All</a>
+                        <h2 class="title">Phim</h2>
+                        <a class="view-all" href="./films">Xem tất cả</a>
                     </div>
                     <div class="row mb-30-none justify-content-center">
                         <c:forEach items="${films}" var="film">
                             <div class="col-sm-6 col-lg-4">
                                 <div class="movie-grid">
                                     <div class="movie-thumb c-thumb">
-                                        <a href="#0">
+                                        <a href="./film-detail?id=${film.id}">
                                             <img src="${film.poster}" alt="movie">
                                         </a>
                                     </div>
                                     <div class="movie-content bg-one">
                                         <h5 class="title m-0">
-                                            <a href="#0">${film.name}</a>
+                                            <a href="./film-detail?id=${film.id}">${film.name}</a>
                                         </h5>
                                         <ul class="movie-rating-percent">
                                             <li>
@@ -321,148 +320,6 @@
                                 </div>
                             </div>
                         </c:forEach>
-                    </div>
-                </div>
-                <div class="article-section padding-bottom">
-                    <div class="section-header-1">
-                        <h2 class="title">events</h2>
-                        <a class="view-all" href="events.html">View All</a>
-                    </div>
-                    <div class="row mb-30-none justify-content-center">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="./assets/images/event/event01.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">Digital Economy Conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="./assets/images/event/event02.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">web design conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="./assets/images/event/event03.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">digital thinkers meetup</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="article-section">
-                    <div class="section-header-1">
-                        <h2 class="title">sports</h2>
-                        <a class="view-all" href="sports.html">View All</a>
-                    </div>
-                    <div class="row mb-30-none justify-content-center">
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="sports-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="./assets/images/sports/sports01.jpg" alt="sports">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">football league tournament</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="sports-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="./assets/images/sports/sports02.jpg" alt="sports">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">world cricket league 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="sports-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="./assets/images/sports/sports03.jpg" alt="sports">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">basket ball tournament 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
