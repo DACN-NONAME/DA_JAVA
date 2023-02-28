@@ -8,8 +8,8 @@
             <h1 class="title  cd-headline clip"><span class="d-block">đặt vé </span> xem
                 <span class="color-theme cd-words-wrapper p-0 m-0">
                     <b class="is-visible">Phim</b>
-                </span>
-                <span class="d-block">hot hôm nay</span>
+                </span> hot
+                <span class="d-block">ngay hôm nay</span>
             </h1>
             <p>Tiện lợi, nhanh chóng!</p>
         </div>

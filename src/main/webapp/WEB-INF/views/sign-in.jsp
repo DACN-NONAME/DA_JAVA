@@ -43,11 +43,11 @@
                 <div class="padding-top padding-bottom">
                     <div class="account-area">
                         <div class="section-header-3">
-                            <span class="cate">welcome</span>
-                            <h2 class="title">to Boleto</h2>
+                            <span class="cate">hello</span>
+                            <h2 class="title">welcome back</h2>
                         </div>
-                        <form class="account-form">
-                            <c:if test="${msg}">
+                        <form class="account-form" action="" method="POST">
+                            <c:if test="${not empty msg}">
                                 <div class="form-group"><p>${msg}</p></div>
                                     </c:if>
                             <div class="form-group">
@@ -56,25 +56,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Mật khẩu <span>*</span></label>
-                                <input type="password" placeholder="Password" id="password" name="password" minlength="6" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="password2">Nhập lại mật khẩu <span>*</span></label>
-                                <input type="password" placeholder="Password" id="password2" name="password2" minlength="6" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">SDT <span>*</span></label>
-                                <input type="text" placeholder="SDT" id="phone" name="phone" required />
-                            </div>
-                            <div class="form-group checkgroup">
-                                <input type="checkbox" id="bal" required checked>
-                                <label for="bal">Tôi đồng ý với <a href="#0">Điều khoản, Chính sách riêng tư</a> và <a href="#0">Phụ phí</a></label>
+                                <input type="password" placeholder="Password" id="password" name="password" required />
                             </div>
                             <div class="form-group text-center">
-                                <input type="submit" value="Đăng Ký">
+                                <input type="submit" value="Đăng Nhập">
                             </div>
                         </form>
-                        <div class="option">Đã có tài khoản? <a href="./sign-in">Đăng nhập</a></div>
+                        <div class="option">Chưa có tài khoản? <a href="./sign-up">Đăng ký</a></div>
                         <!--                        <div class="or"><span>Or</span></div>
                                                 <ul class="social-icons">
                                                     <li>

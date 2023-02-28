@@ -1,4 +1,5 @@
 <%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
+<%@page import="com.noname.model.User"%>
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -89,8 +90,30 @@
                         <li>
                             <a href="contact.html">contact</a>
                         </li>
-                        <li class="header-button pr-0">
+                        <li>
+                            <%
+                                if (session.getAttribute("user") == null) {
+                            %>
                             <a href="./sign-in">Đăng nhập</a>
+                            <%
+                            } else {
+//                                User user = (User) session.getAttribute("user");
+                            %>
+                            <a href="#">Xin chào ${user.full_name}</a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="./profile">Trang cá nhân</a>
+                                </li>
+                                <li>
+                                    <a href="./history">Lịch sử mua vé</a>
+                                </li>
+                                <li>
+                                    <a href="./logout">Đăng xuất</a>
+                                </li>
+                            </ul>
+                            <%
+                                }
+                            %>
                         </li>
                     </ul>
                     <div class="header-bar d-lg-none">

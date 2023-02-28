@@ -61,6 +61,7 @@ public class DB {
             }
             return pstmt.executeQuery();
         } catch (SQLException ex) {
+            System.out.println("Error query: " + ex.getMessage());
             return null;
         }
     }
@@ -84,6 +85,7 @@ public class DB {
             }
             return pstmt.executeUpdate();
         } catch (SQLException ex) {
+            System.out.println("Error query: " + ex.getMessage());
             return 0;
         }
     }

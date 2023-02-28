@@ -99,7 +99,7 @@ public class DBQuery {
 
     public boolean Login(String email, String password) {
         password = Utils.SHA1(password);
-        ResultSet rs = db.Query("SELECT * FROM user WHERE email = " + email + " AND password = " + password);
+        ResultSet rs = db.Query("SELECT * FROM user WHERE email = ? AND password = ?", new String[]{email, password});
         if (rs != null) {
             try {
                 while (rs.next()) {
@@ -113,7 +113,7 @@ public class DBQuery {
 
     public int Register(User user) {
         String created_at = Utils.StrDate("yyyy-MM-dd");
-        String[] params = new String[]{user.getFull_name(), user.getEmail(), user.getPassword(), user.getPhone(), created_at};
+        String[] params = new String[]{user.getFull_name(), user.getEmail(), Utils.SHA1(user.getPassword()), user.getPhone(), created_at};
         if (GetUserByEmail(user.getEmail()) == null) {
             if (db.Update("INSERT INTO user(full_name, email, password, phone, created_at) VALUES (?, ?, ?, ?, ?)", params) > 0) {
                 return 1;
@@ -131,12 +131,21 @@ public class DBQuery {
             try {
                 while (rs.next()) {
                     User u = new User();
-                    u.setFull_name(rs.getString(""));
+                    u.setId(rs.getInt("id"));
+                    u.setFull_name(rs.getString("full_name"));
+                    u.setEmail(rs.getString("email"));
+                    u.setPhone(rs.getString("phone"));
+                    u.setAddress(rs.getString("address"));
                     return u;
                 }
             } catch (SQLException ex) {
             }
         }
         return null;
+    }
+
+    public boolean UpdateUser(User user) {
+        String[] params = new String[]{user.getFull_name(), user.getPhone(), user.getAddress(), String.valueOf(user.getId())};
+        return db.Update("UPDATE user SET full_name = ?, phone = ?, address = ? WHERE id = ?", params) > 0;
     }
 }
