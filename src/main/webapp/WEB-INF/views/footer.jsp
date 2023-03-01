@@ -78,6 +78,20 @@
 <script src="assets/js/viewport.jquery.js"></script>
 <script src="assets/js/nice-select.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+
+    function redirectParams(name, value) {
+        var url = new URL(window.location.href);
+        url.searchParams.set(name, value);
+        window.location.href = url.href;
+    }
+
+    function pagination(num) {
+        redirectParams('page', num);
+    }</script>
 </body>
 
 </html>

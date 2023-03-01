@@ -25,7 +25,7 @@
                         <!--<h2 class="title">chỉnh sửa nếu cần</h2>-->
                         <!--<p>We’d love to talk about how we can work together. Send us a message below and we’ll respond as soon as possible.</p>-->
                     </div>
-                    <form class="contact-form" id="contact_form_submit" action="" method="POST">
+                    <form class="contact-form" id="contact_form_submit" action="" method="POST" enctype="application/x-www-form-urlencoded;charset=UTF-8" accept-charset="UTF-8">
                         <div class="form-group">
                             <label for="full_name">Họ tên <span>*</span></label>
                             <input type="text" name="full_name" id="full_name" value="<%= user.getFull_name()%>" required />

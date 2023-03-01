@@ -295,26 +295,20 @@
                                 <div class="movie-grid">
                                     <div class="movie-thumb c-thumb">
                                         <a href="./film-detail?id=${film.id}">
-                                            <img src="${film.poster}" alt="movie">
+                                            <img src="${film.poster}" alt="movie" height="357px" width="255px" />
                                         </a>
                                     </div>
                                     <div class="movie-content bg-one">
-                                        <h5 class="title m-0">
+                                        <h5 class="title m-0" style="font-size: 18px;">
                                             <a href="./film-detail?id=${film.id}">${film.name}</a>
                                         </h5>
                                         <ul class="movie-rating-percent">
                                             <li>
                                                 <div class="thumb">
-                                                    <img src="./assets/images/movie/tomato.png" alt="movie">
+                                                    <img src="./assets/images/movie/tomato.png" alt="movie" />
                                                 </div>
                                                 <span class="content">${film.duration} phút</span>
                                             </li>
-                                            <!--                                                    <li>
-                                                                                                    <div class="thumb">
-                                                                                                        <img src="./assets/images/movie/cake.png" alt="movie">
-                                                                                                    </div>
-                                                                                                    <span class="content">88%</span>
-                                                                                                </li>-->
                                         </ul>
                                     </div>
                                 </div>

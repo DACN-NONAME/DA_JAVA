@@ -1,4 +1,7 @@
-<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
+<%@page import="com.noname.database.DBQuery"%>
+<%@page import="java.util.List"%>
+<%@page import="com.noname.model.Category"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.noname.model.User"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -22,8 +25,10 @@
 
         <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
-        <title>Boleto  - Đặt vé phim trực tuyến</title>
-
+        <c:choose>
+            <c:when test="${not empty title}"><title>Boleto  - ${title}</title></c:when>
+            <c:otherwise><title>Boleto  - Đặt vé phim trực tuyến</title></c:otherwise>
+        </c:choose>
 
     </head>
 
@@ -60,35 +65,19 @@
                         </li>
                         <li>
                             <a href="./films">Phim</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="movie-grid.html">Movie Grid</a>
-                                </li>
-                                <li>
-                                    <a href="movie-list.html">Movie List</a>
-                                </li>
-                                <li>
-                                    <a href="movie-details.html">Movie Details</a>
-                                </li>
-                                <li>
-                                    <a href="movie-details-2.html">Movie Details 2</a>
-                                </li>
-                                <li>
-                                    <a href="movie-ticket-plan.html">Movie Ticket Plan</a>
-                                </li>
-                                <li>
-                                    <a href="movie-seat-plan.html">Movie Seat Plan</a>
-                                </li>
-                                <li>
-                                    <a href="movie-checkout.html">Movie Checkout</a>
-                                </li>
-                                <li>
-                                    <a href="popcorn.html">Movie Food</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
-                            <a href="contact.html">contact</a>
+                            <a href="contact.html">Thể loại</a>
+                            <ul class="submenu">
+                                <%
+                                    DBQuery dbq = new DBQuery();
+                                    for (Category ele : dbq.GetCategories()) {
+                                %>
+                                <li><a href="./films?category_id=<%= ele.getId()%>"><%= ele.getName()%></a></li>
+                                    <%
+                                        }
+                                    %>
+                            </ul>
                         </li>
                         <li>
                             <%
@@ -97,9 +86,9 @@
                             <a href="./sign-in">Đăng nhập</a>
                             <%
                             } else {
-//                                User user = (User) session.getAttribute("user");
+                                User user = (User) session.getAttribute("user");
                             %>
-                            <a href="#">Xin chào ${user.full_name}</a>
+                            <a href="#">Xin chào <%= user.getFull_name()%></a>
                             <ul class="submenu">
                                 <li>
                                     <a href="./profile">Trang cá nhân</a>
