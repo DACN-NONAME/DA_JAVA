@@ -5,6 +5,8 @@
  */
 package com.noname.model;
 
+import java.util.List;
+
 /**
  *
  * @author Minh
@@ -54,6 +56,48 @@ public class Schedule {
     }
 
     /**
+     * @return the cinema_name
+     */
+    public String getCinema_name() {
+        return cinema_name;
+    }
+
+    /**
+     * @param cinema_name the cinema_name to set
+     */
+    public void setCinema_name(String cinema_name) {
+        this.cinema_name = cinema_name;
+    }
+
+    /**
+     * @return the cinema_address
+     */
+    public String getCinema_address() {
+        return cinema_address;
+    }
+
+    /**
+     * @param cinema_address the cinema_address to set
+     */
+    public void setCinema_address(String cinema_address) {
+        this.cinema_address = cinema_address;
+    }
+
+    /**
+     * @return the rooms
+     */
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    /**
+     * @param rooms the rooms to set
+     */
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    /**
      * @return the room_id
      */
     public int getRoom_id() {
@@ -65,6 +109,20 @@ public class Schedule {
      */
     public void setRoom_id(int room_id) {
         this.room_id = room_id;
+    }
+
+    /**
+     * @return the room_name
+     */
+    public String getRoom_name() {
+        return room_name;
+    }
+
+    /**
+     * @param room_name the room_name to set
+     */
+    public void setRoom_name(String room_name) {
+        this.room_name = room_name;
     }
 
     /**
@@ -80,9 +138,14 @@ public class Schedule {
     public void setStart_time(String start_time) {
         this.start_time = start_time;
     }
+
     private int id;
     private int film_id;
     private int cinema_id;
+    private String cinema_name;
+    private String cinema_address;
+    private List<Room> rooms;
     private int room_id;
+    private String room_name;
     private String start_time;
 }

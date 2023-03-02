@@ -24,7 +24,7 @@ public class DB {
     private Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String URL = "jdbc:mysql://pma.phatnef.me/phatdevx_dat_ve_phim?user=phatdevx_noname&password=Noname@2023&useUnicode=true&characterEncoding=UTF-8";
+            String URL = "jdbc:mysql://pma.phatnef.me/phatdevx_dat_ve_phim?user=phatdevx_noname&password=Noname@2023&useSSL=false&useUnicode=true&characterEncoding=UTF-8";
             Connection conn = DriverManager.getConnection(URL);
             return conn;
         } catch (ClassNotFoundException | SQLException ex) {
@@ -47,7 +47,7 @@ public class DB {
         try {
             return stmt.executeQuery(sql);
         } catch (SQLException ex) {
-            System.out.println("Error query: " + ex.getMessage());
+            System.out.println("Error query 1a: " + ex.getMessage());
         }
         return null;
     }
@@ -61,7 +61,7 @@ public class DB {
             }
             return pstmt.executeQuery();
         } catch (SQLException ex) {
-            System.out.println("Error query: " + ex.getMessage());
+            System.out.println("Error query 1b: " + ex.getMessage());
             return null;
         }
     }
@@ -71,7 +71,7 @@ public class DB {
         try {
             return stmt.executeUpdate(sql);
         } catch (SQLException ex) {
-            System.out.println("Error query: " + ex.getMessage());
+            System.out.println("Error query 2a: " + ex.getMessage());
         }
         return 0;
     }
@@ -85,7 +85,7 @@ public class DB {
             }
             return pstmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println("Error query: " + ex.getMessage());
+            System.out.println("Error query 2b: " + ex.getMessage());
             return 0;
         }
     }

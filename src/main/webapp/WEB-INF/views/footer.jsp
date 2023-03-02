@@ -91,7 +91,33 @@
 
     function pagination(num) {
         redirectParams('page', num);
-    }</script>
+    }
+
+    function numberWithDot(x) {
+        return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    $(document).ready(function () {
+        // Nice Select
+        $(".select-bar").niceSelect();
+        $('div.select-bar').on('click', function (event) {
+            console.log(event);
+            if (event.target.className.includes("option") && !event.target.className.includes("focus"))
+                redirectParams('date', event.target.innerText);
+//                console.log(event.target.innerText);
+        });
+    });
+
+    let schedule_id = 0;
+    function setScheduleId(id) {
+        schedule_id = id;
+    }
+
+    function redirectScheduleId() {
+        window.location.href = './seats?id=' + schedule_id;
+    }
+
+</script>
 </body>
 
 </html>

@@ -8,6 +8,8 @@ import com.noname.config.Utils;
 import com.noname.database.DBQuery;
 import com.noname.model.Film;
 import com.noname.model.User;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -40,7 +42,7 @@ public class FilmController {
     }
 
     @RequestMapping(value = "/film-detail")
-    public String FilmDetail(@RequestParam String id, Model model) {
+    public String FilmDetail(@RequestParam(required = false) String id, Model model) {
         try {
             int film_id = Integer.parseInt(id);
             Film f = dbq.GetFilm(film_id);
@@ -59,6 +61,9 @@ public class FilmController {
                 actors.add(u);
             }
             model.addAttribute("actors", actors);
+
+            LocalDate today = LocalDate.now(ZoneId.of(Utils.TZ));
+            model.addAttribute("date", today);
 
             return "film-detail";
         } catch (NumberFormatException ex) {

@@ -36,8 +36,6 @@
     });
   });
   $(document).ready(function () {
-    // Nice Select
-    $(".select-bar").niceSelect();
     // Lightcase
     $(".video-popup").magnificPopup({
       type: "iframe",
@@ -384,30 +382,53 @@
       },
     });
 
+    let seats = 0, limit_seats = 10, price = 0;
     $(".seat-free").on("click", function (e) {
       var seat = $(this).children("img");
       var title = $(this).children("span").text();
+      var priceSeat = $(this).attr("data-price");
       var chosen = $("#chose-seat");
       var book = seat.attr("src").includes("booked");
       if (book) {
+        seats--;
         seat.attr("src", "assets/images/movie/seat01-free.png");
         chosen.text(chosen.text().replace(title + ", ", ""));
+        $("#price").text(numberWithDot(price -= priceSeat) + " đ");
       } else {
-        seat.attr("src", "assets/images/movie/seat01-booked.png");
-        chosen.text(chosen.text() + title + ", ");
+        seats++;
+        if (seats > limit_seats) {
+            seats--;
+            alert('Số lượng chỗ ngồi không được quá ' + limit_seats + '!');
+        }
+        else {
+            seat.attr("src", "assets/images/movie/seat01-booked.png");
+            chosen.text(chosen.text() + title + ", ");
+            $("#price").text(numberWithDot(price += ~~priceSeat) + " đ");
+        }
       }
     });
     $(".seat-free-two").on("click", function (e) {
       var seat = $(this).children("img");
       var title = $(this).children("span").text();
+      var priceSeat = $(this).attr("data-price");
       var chosen = $("#chose-seat");
       var bookTwo = seat.attr("src").includes("booked");
       if (bookTwo) {
+        seats -= 2;
         seat.attr("src", "assets/images/movie/seat02-free.png");
         chosen.text(chosen.text().replace(title + ", ", ""));
+        $("#price").text(numberWithDot(price -= priceSeat) + " đ");
       } else {
-        seat.attr("src", "assets/images/movie/seat02-booked.png");
-        chosen.text(chosen.text() + title + ", ");
+        seats += 2;
+        if (seats > limit_seats) {
+            seats -= 2;
+            alert('Số lượng chỗ ngồi không được quá ' + limit_seats + '!');
+        }
+        else {
+            seat.attr("src", "assets/images/movie/seat02-booked.png");
+            chosen.text(chosen.text() + title + ", ");
+            $("#price").text(numberWithDot(price += ~~priceSeat) + " đ");
+        }
       }
     });
 

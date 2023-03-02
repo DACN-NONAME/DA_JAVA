@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Utils {
 
+    public static String TZ = "Asia/Ho_Chi_Minh";
     public static int LIMIT_ROWS = 10;
 
     public static int Page(String page) {
