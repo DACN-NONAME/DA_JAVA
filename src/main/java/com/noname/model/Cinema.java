@@ -9,7 +9,7 @@ package com.noname.model;
  *
  * @author Minh
  */
-public class Category {
+public class Cinema {
 
     /**
      * @return the id
@@ -39,6 +39,22 @@ public class Category {
         this.name = name;
     }
 
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
     private int id;
     private String name;
+    private String address;
+    
 }

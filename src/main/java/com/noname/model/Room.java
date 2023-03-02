@@ -9,7 +9,7 @@ package com.noname.model;
  *
  * @author Minh
  */
-public class Category {
+public class Room {
 
     /**
      * @return the id
@@ -39,6 +39,22 @@ public class Category {
         this.name = name;
     }
 
+    /**
+     * @return the start_time
+     */
+    public String getStart_time() {
+        return start_time;
+    }
+
+    /**
+     * @param start_time the start_time to set
+     */
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
+
     private int id;
     private String name;
+    private String start_time;
+
 }

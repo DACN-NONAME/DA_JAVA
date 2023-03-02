@@ -9,7 +9,7 @@ package com.noname.model;
  *
  * @author Minh
  */
-public class Category {
+public class Ticket {
 
     /**
      * @return the id
@@ -26,19 +26,33 @@ public class Category {
     }
 
     /**
-     * @return the name
+     * @return the price
      */
-    public String getName() {
-        return name;
+    public int getPrice() {
+        return price;
     }
 
     /**
-     * @param name the name to set
+     * @param price the price to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
     private int id;
-    private String name;
+    private int price;
+    private String type;
 }
