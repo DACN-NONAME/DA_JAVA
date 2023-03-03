@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -25,31 +26,28 @@ public class DBQuery {
     DB db = new DB();
 
     public List<Film> GetFilms(int page) {
-        ResultSet rs = db.Query("SELECT F.*, C.name AS country_name, R.name AS rated_name FROM film F LEFT JOIN country C ON F.country_id = C.id LEFT JOIN rated R ON F.rated_id = R.id ORDER BY F.id DESC " + Utils.Offset(page));
+        List<Map<String, Object>> ls = db.Query("SELECT F.*, C.name AS country_name, R.name AS rated_name FROM film F LEFT JOIN country C ON F.country_id = C.id LEFT JOIN rated R ON F.rated_id = R.id ORDER BY F.id DESC " + Utils.Offset(page));
         List<Film> list = new ArrayList<>();
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    Film f = new Film();
-                    f.setId(rs.getInt("id"));
-                    f.setName(rs.getString("name"));
-                    f.setPoster(rs.getString("poster"));
-                    f.setTrailer(rs.getString("trailer"));
-                    f.setDirector(rs.getString("director"));
-                    f.setProducer(rs.getString("producer"));
-                    f.setActor(rs.getString("actor"));
-                    f.setOpening_day(rs.getString("opening_day"));
-                    f.setDescription(rs.getString("description"));
-                    f.setDuration(rs.getInt("duration"));
-                    f.setCountry_id(rs.getInt("country_id"));
-                    f.setCountry_name(rs.getString("country_name"));
-                    f.setRated_id(rs.getInt("rated_id"));
-                    f.setRated_name(rs.getString("rated_name"));
-                    list.add(f);
-                }
-            } catch (SQLException ex) {
-                System.out.println("error get films: " + ex.toString());
-            }
+        for (Map<String, Object> ele : ls) {
+//            for (Map.Entry<String, Object> entry : ele.entrySet()) {
+//                System.out.println(entry.getKey() + ": " + entry.getValue());
+//            }
+            Film f = new Film();
+            f.setId(Integer.parseInt(ele.get("id").toString()));
+            f.setName(ele.get("name").toString());
+            f.setPoster(ele.get("poster").toString());
+            f.setTrailer(ele.get("trailer").toString());
+            f.setDirector(ele.get("director").toString());
+            f.setProducer(String.valueOf(ele.get("producer")));
+            f.setActor(ele.get("actor").toString());
+            f.setOpening_day(ele.get("opening_day").toString());
+            f.setDescription(ele.get("description").toString());
+            f.setDuration(Integer.parseInt(ele.get("duration").toString()));
+            f.setCountry_id(Integer.parseInt(ele.get("country_id").toString()));
+            f.setCountry_name(String.valueOf(ele.get("country_name")));
+            f.setRated_id(Integer.parseInt(ele.get("rated_id").toString()));
+            f.setRated_name(String.valueOf(ele.get("rated_name")));
+            list.add(f);
         }
         return list;
     }
@@ -59,122 +57,93 @@ public class DBQuery {
     }
 
     public List<Film> GetFilmsByCategoryId(int page, int category_id) {
-        ResultSet rs = db.Query("SELECT F.*, C.name AS country_name, R.name AS rated_name FROM category_film CF LEFT JOIN film F ON CF.film_id = F.id LEFT JOIN country C ON F.country_id = C.id LEFT JOIN rated R ON F.rated_id = R.id WHERE CF.category_id = " + category_id + " ORDER BY F.id DESC " + Utils.Offset(page));
+        List<Map<String, Object>> ls = db.Query("SELECT F.*, C.name AS country_name, R.name AS rated_name FROM category_film CF LEFT JOIN film F ON CF.film_id = F.id LEFT JOIN country C ON F.country_id = C.id LEFT JOIN rated R ON F.rated_id = R.id WHERE CF.category_id = " + category_id + " ORDER BY F.id DESC " + Utils.Offset(page));
         List<Film> list = new ArrayList<>();
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    Film f = new Film();
-                    f.setId(rs.getInt("id"));
-                    f.setName(rs.getString("name"));
-                    f.setPoster(rs.getString("poster"));
-                    f.setTrailer(rs.getString("trailer"));
-                    f.setDirector(rs.getString("director"));
-                    f.setProducer(rs.getString("producer"));
-                    f.setActor(rs.getString("actor"));
-                    f.setOpening_day(rs.getString("opening_day"));
-                    f.setDescription(rs.getString("description"));
-                    f.setDuration(rs.getInt("duration"));
-                    f.setCountry_id(rs.getInt("country_id"));
-                    f.setCountry_name(rs.getString("country_name"));
-                    f.setRated_id(rs.getInt("rated_id"));
-                    f.setRated_name(rs.getString("rated_name"));
-                    list.add(f);
-                }
-            } catch (SQLException ex) {
-                System.out.println("error get films: " + ex.toString());
-            }
+        for (Map<String, Object> ele : ls) {
+            Film f = new Film();
+            f.setId(Integer.parseInt(ele.get("id").toString()));
+            f.setName(ele.get("name").toString());
+            f.setPoster(ele.get("poster").toString());
+            f.setTrailer(ele.get("trailer").toString());
+            f.setDirector(ele.get("director").toString());
+            f.setProducer(String.valueOf(ele.get("producer")));
+            f.setActor(ele.get("actor").toString());
+            f.setOpening_day(ele.get("opening_day").toString());
+            f.setDescription(ele.get("description").toString());
+            f.setDuration(Integer.parseInt(ele.get("duration").toString()));
+            f.setCountry_id(Integer.parseInt(ele.get("country_id").toString()));
+            f.setCountry_name(String.valueOf(ele.get("country_name")));
+            f.setRated_id(Integer.parseInt(ele.get("rated_id").toString()));
+            f.setRated_name(String.valueOf(ele.get("rated_name")));
+            list.add(f);
         }
         return list;
     }
 
     public Film GetFilm(int id) {
-        ResultSet rs = db.Query("SELECT F.*, C.name AS country_name, R.name AS rated_name FROM film F LEFT JOIN country C ON F.country_id = C.id LEFT JOIN rated R ON F.rated_id = R.id WHERE F.id = " + id);
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    Film f = new Film();
-                    f.setId(rs.getInt("id"));
-                    f.setName(rs.getString("name"));
-                    f.setPoster(rs.getString("poster"));
-                    f.setTrailer(rs.getString("trailer"));
-                    f.setDirector(rs.getString("director"));
-                    f.setProducer(rs.getString("producer"));
-                    f.setActor(rs.getString("actor"));
-                    f.setOpening_day(rs.getString("opening_day"));
-                    f.setDescription(rs.getString("description"));
-                    f.setDuration(rs.getInt("duration"));
-                    f.setCountry_id(rs.getInt("country_id"));
-                    f.setCountry_name(rs.getString("country_name"));
-                    f.setRated_id(rs.getInt("rated_id"));
-                    f.setRated_name(rs.getString("rated_name"));
-                    return f;
-                }
-            } catch (SQLException ex) {
-                System.out.println("error get film: " + ex.toString());
-            }
+        List<Map<String, Object>> ls = db.Query("SELECT F.*, C.name AS country_name, R.name AS rated_name FROM film F LEFT JOIN country C ON F.country_id = C.id LEFT JOIN rated R ON F.rated_id = R.id WHERE F.id = " + id);
+        for (Map<String, Object> ele : ls) {
+            Film f = new Film();
+            f.setId(Integer.parseInt(ele.get("id").toString()));
+            f.setName(ele.get("name").toString());
+            f.setPoster(ele.get("poster").toString());
+            f.setTrailer(ele.get("trailer").toString());
+            f.setDirector(ele.get("director").toString());
+            f.setProducer(String.valueOf(ele.get("producer")));
+            f.setActor(ele.get("actor").toString());
+            f.setOpening_day(ele.get("opening_day").toString());
+            f.setDescription(ele.get("description").toString());
+            f.setDuration(Integer.parseInt(ele.get("duration").toString()));
+            f.setCountry_id(Integer.parseInt(ele.get("country_id").toString()));
+            f.setCountry_name(String.valueOf(ele.get("country_name")));
+            f.setRated_id(Integer.parseInt(ele.get("rated_id").toString()));
+            f.setRated_name(String.valueOf(ele.get("rated_name")));
+            return f;
         }
         return null;
     }
 
     public int getCountFilms() {
-        ResultSet rs = db.Query("SELECT COUNT(id) AS total FROM film");
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    return rs.getInt("total");
-                }
-            } catch (SQLException ex) {
-                System.out.println("error get count films: " + ex.toString());
+        List<Map<String, Object>> ls = db.Query("SELECT COUNT(id) AS total FROM film");
+        try {
+            for (Map<String, Object> ele : ls) {
+                return Integer.parseInt(String.valueOf(ele.get("total")));
             }
+        } catch (NumberFormatException ex) {
+            System.out.println("error get count films: " + ex.toString());
         }
         return 0;
     }
 
     public List<Category> GetCategories() {
-        ResultSet rs = db.Query("SELECT * FROM category");
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM category");
         List<Category> list = new ArrayList<>();
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    Category c = new Category();
-                    c.setId(rs.getInt("id"));
-                    c.setName(rs.getString("name"));
-                    list.add(c);
-                }
-            } catch (SQLException ex) {
-            }
+        for (Map<String, Object> ele : ls) {
+            Category c = new Category();
+            c.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            c.setName(String.valueOf(ele.get("name")));
+            list.add(c);
         }
         return list;
     }
 
     public List<Category> GetCategoriesByFilmId(int film_id) {
-        ResultSet rs = db.Query("SELECT C.* FROM category_film CF LEFT JOIN category C ON CF.category_id = C.id LEFT JOIN film F ON CF.film_id = F.id WHERE F.id = " + film_id);
+        List<Map<String, Object>> ls = db.Query("SELECT C.* FROM category_film CF LEFT JOIN category C ON CF.category_id = C.id LEFT JOIN film F ON CF.film_id = F.id WHERE F.id = " + film_id);
         List<Category> list = new ArrayList<>();
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    Category c = new Category();
-                    c.setId(rs.getInt("id"));
-                    c.setName(rs.getString("name"));
-                    list.add(c);
-                }
-            } catch (SQLException ex) {
-            }
+        for (Map<String, Object> ele : ls) {
+            Category c = new Category();
+            c.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            c.setName(String.valueOf(ele.get("name")));
+            list.add(c);
         }
         return list;
     }
 
     public boolean Login(String email, String password) {
         password = Utils.SHA1(password);
-        ResultSet rs = db.Query("SELECT * FROM user WHERE email = ? AND password = ?", new String[]{email, password});
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    return true;
-                }
-            } catch (SQLException ex) {
-            }
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM user WHERE email = ? AND password = ?", new String[]{email, password});
+        for (Map<String, Object> ele : ls) {
+            return true;
         }
         return false;
     }
@@ -194,20 +163,15 @@ public class DBQuery {
     }
 
     public User GetUserByEmail(String email) {
-        ResultSet rs = db.Query("SELECT * FROM user WHERE email = ?", new String[]{email});
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    User u = new User();
-                    u.setId(rs.getInt("id"));
-                    u.setFull_name(rs.getString("full_name"));
-                    u.setEmail(rs.getString("email"));
-                    u.setPhone(rs.getString("phone"));
-                    u.setAddress(rs.getString("address"));
-                    return u;
-                }
-            } catch (SQLException ex) {
-            }
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM user WHERE email = ?", new String[]{email});
+        for (Map<String, Object> ele : ls) {
+            User u = new User();
+            u.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            u.setFull_name(String.valueOf(ele.get("full_name")));
+            u.setEmail(String.valueOf(ele.get("email")));
+            u.setPhone(String.valueOf(ele.get("phone")));
+            u.setAddress(String.valueOf(ele.get("address")));
+            return u;
         }
         return null;
     }
@@ -218,87 +182,72 @@ public class DBQuery {
     }
 
     public List<Schedule> GetSchedulesByFilmIdByDate(int film_id, String date) {
-        ResultSet rs = db.Query("SELECT S.*, C.name AS cinema_name, C.address AS cinema_address, R.name AS room_name FROM schedule S LEFT JOIN cinema C ON S.cinema_id = C.id LEFT JOIN room R ON S.room_id = R.id WHERE S.film_id = " + film_id + "  AND DATE(S.start_time) = ? ORDER BY TIME(S.start_time) ASC", new String[]{date});
+        List<Map<String, Object>> ls = db.Query("SELECT S.*, C.name AS cinema_name, C.address AS cinema_address, R.name AS room_name FROM schedule S LEFT JOIN cinema C ON S.cinema_id = C.id LEFT JOIN room R ON S.room_id = R.id WHERE S.film_id = " + film_id + "  AND DATE(S.start_time) = ? ORDER BY TIME(S.start_time) ASC", new String[]{date});
         List<Schedule> list = new ArrayList<>();
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    Schedule s = new Schedule();
-                    s.setId(rs.getInt("id"));
-                    s.setFilm_id(film_id);
-                    s.setCinema_id(rs.getInt("cinema_id"));
-                    s.setCinema_name(rs.getString("cinema_name"));
-                    s.setCinema_address(rs.getString("cinema_address"));
+        for (Map<String, Object> ele : ls) {
+            Schedule s = new Schedule();
+            s.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            s.setFilm_id(film_id);
+            s.setCinema_id(Integer.parseInt(String.valueOf(ele.get("cinema_id"))));
+            s.setCinema_name(String.valueOf(ele.get("cinema_name")));
+            s.setCinema_address(String.valueOf(ele.get("cinema_address")));
 
-                    Room r = new Room();
-                    r.setId(rs.getInt("room_id"));
-                    r.setName(rs.getString("room_name"));
-                    String[] start_time = rs.getString("start_time").split(" ")[1].split(":");
-                    r.setStart_time(start_time[0] + ":" + start_time[1]);
-                    // add temp if first
-                    List<Room> tempR = new ArrayList<>();
+            Room r = new Room();
+            r.setId(Integer.parseInt(String.valueOf(ele.get("room_id"))));
+            r.setName(String.valueOf(ele.get("room_name")));
+            String[] start_time = String.valueOf(ele.get("start_time")).split("T")[1].split(":");
+            r.setStart_time(start_time[0] + ":" + start_time[1]);
+            // add temp if first
+            List<Room> tempR = new ArrayList<>();
+            tempR.add(r);
+            s.setRooms(tempR);
+
+            boolean isNew = true;
+            int i = 0;
+            for (Schedule ele2 : list) {
+                if (ele2.getCinema_id() == s.getCinema_id()) {
+                    isNew = false;
+                    tempR = ele2.getRooms();
                     tempR.add(r);
-                    s.setRooms(tempR);
-
-                    boolean isNew = true;
-                    int i = 0;
-                    for (Schedule ele : list) {
-                        if (ele.getCinema_id() == s.getCinema_id()) {
-                            isNew = false;
-                            tempR = ele.getRooms();
-                            tempR.add(r);
-                            list.get(i).setRooms(tempR);
-                            break;
-                        }
-                        i++;
-                    }
-                    if (isNew) {
-                        list.add(s);
-                    }
+                    list.get(i).setRooms(tempR);
+                    break;
                 }
-            } catch (SQLException ex) {
+                i++;
+            }
+            if (isNew) {
+                list.add(s);
             }
         }
         return list;
     }
 
     public Schedule GetSchedule(int id) {
-        ResultSet rs = db.Query("SELECT S.*, C.name AS cinema_name, C.address AS cinema_address, R.name AS room_name FROM schedule S LEFT JOIN cinema C ON S.cinema_id = C.id LEFT JOIN room R ON S.room_id = R.id WHERE S.id = " + id);
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    Schedule s = new Schedule();
-                    s.setId(rs.getInt("id"));
-                    s.setFilm_id(rs.getInt("film_id"));
-                    s.setCinema_id(rs.getInt("cinema_id"));
-                    s.setCinema_name(rs.getString("cinema_name"));
-                    s.setCinema_address(rs.getString("cinema_address"));
-                    s.setRoom_id(rs.getInt("room_id"));
-                    s.setRoom_name(rs.getString("room_name"));
-                    String start_time = rs.getString("start_time");
-                    s.setStart_time(start_time.substring(0, start_time.length() - 3));
-                    return s;
-                }
-            } catch (SQLException ex) {
-            }
+        List<Map<String, Object>> ls = db.Query("SELECT S.*, C.name AS cinema_name, C.address AS cinema_address, R.name AS room_name FROM schedule S LEFT JOIN cinema C ON S.cinema_id = C.id LEFT JOIN room R ON S.room_id = R.id WHERE S.id = " + id);
+        for (Map<String, Object> ele : ls) {
+            Schedule s = new Schedule();
+            s.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            s.setFilm_id(Integer.parseInt(String.valueOf(ele.get("film_id"))));
+            s.setCinema_id(Integer.parseInt(String.valueOf(ele.get("cinema_id"))));
+            s.setCinema_name(String.valueOf(ele.get("cinema_name")));
+            s.setCinema_address(String.valueOf(ele.get("cinema_address")));
+            s.setRoom_id(Integer.parseInt(String.valueOf(ele.get("room_id"))));
+            s.setRoom_name(String.valueOf(ele.get("room_name")));
+            String[] start_time = String.valueOf(ele.get("start_time")).replace("T", " ").split(":");
+            s.setStart_time(start_time[0] + ":" + start_time[1]);
+            return s;
         }
         return null;
     }
 
     public List<Ticket> GetTickets() {
-        ResultSet rs = db.Query("SELECT * FROM ticket");
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM ticket");
         List<Ticket> list = new ArrayList<>();
-        if (rs != null) {
-            try {
-                while (rs.next()) {
-                    Ticket t = new Ticket();
-                    t.setId(rs.getInt("id"));
-                    t.setPrice(rs.getInt("price"));
-                    t.setType(rs.getString("type"));
-                    list.add(t);
-                }
-            } catch (SQLException ex) {
-            }
+        for (Map<String, Object> ele : ls) {
+            Ticket t = new Ticket();
+            t.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            t.setPrice(Integer.parseInt(String.valueOf(ele.get("price"))));
+            t.setType(String.valueOf(ele.get("type")));
+            list.add(t);
         }
         return list;
     }

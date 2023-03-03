@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.noname.models;
+package com.noname.model;
 
 import java.util.List;
 
