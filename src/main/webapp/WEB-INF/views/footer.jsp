@@ -117,6 +117,9 @@
         window.location.href = './seats?id=' + schedule_id;
     }
 
+    function redirectPurchase(sid) {
+        window.location.href = './purchase?schedule_id=' + sid + 'seats=' + $('#code-seat').text().trim(',');
+    }
 </script>
 </body>
 

@@ -382,18 +382,21 @@
       },
     });
 
-    let seats = 0, limit_seats = 10, price = 0;
+    let seats = 0, limit_seats = 10, price = 0, code_seat= "";
     $(".seat-free").on("click", function (e) {
       var seat = $(this).children("img");
       var title = $(this).children("span").text();
       var priceSeat = $(this).attr("data-price");
+      var codeSeat = $(this).attr("data-code-seat");
       var chosen = $("#chose-seat");
+      var code_seats = $("#code-seat");
       var book = seat.attr("src").includes("booked");
       if (book) {
         seats--;
         seat.attr("src", "assets/images/movie/seat01-free.png");
         chosen.text(chosen.text().replace(title + ", ", ""));
         $("#price").text(numberWithDot(price -= priceSeat) + " đ");
+        code_seats.text(code_seats.text().replace(codeSeat + ",", ""));
       } else {
         seats++;
         if (seats > limit_seats) {
@@ -404,6 +407,7 @@
             seat.attr("src", "assets/images/movie/seat01-booked.png");
             chosen.text(chosen.text() + title + ", ");
             $("#price").text(numberWithDot(price += ~~priceSeat) + " đ");
+            code_seats.text(code_seats.text() + codeSeat + ",");
         }
       }
     });
@@ -411,6 +415,9 @@
       var seat = $(this).children("img");
       var title = $(this).children("span").text();
       var priceSeat = $(this).attr("data-price");
+      var codeSeat = $(this).attr("data-code-seat");
+      var chosen = $("#chose-seat");
+      var code_seats = $("#code-seat");
       var chosen = $("#chose-seat");
       var bookTwo = seat.attr("src").includes("booked");
       if (bookTwo) {
@@ -418,6 +425,7 @@
         seat.attr("src", "assets/images/movie/seat02-free.png");
         chosen.text(chosen.text().replace(title + ", ", ""));
         $("#price").text(numberWithDot(price -= priceSeat) + " đ");
+        code_seats.text(code_seats.text().replace(codeSeat + ",", ""));
       } else {
         seats += 2;
         if (seats > limit_seats) {
@@ -428,6 +436,7 @@
             seat.attr("src", "assets/images/movie/seat02-booked.png");
             chosen.text(chosen.text() + title + ", ");
             $("#price").text(numberWithDot(price += ~~priceSeat) + " đ");
+            code_seats.text(code_seats.text() + codeSeat + ",");
         }
       }
     });

@@ -86,4 +86,50 @@ public class Utils {
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
     }
+
+    public static String IntToBin(int a, int len) {
+        String b = Integer.toBinaryString(a);
+        int length = len - b.length();
+        for (int i = 0; i < length; i++) {
+            b = "0" + b;
+        }
+        return b;
+    }
+
+    public static String IntToBin(int a) {
+        return IntToBin(a, 8);
+    }
+
+    public static int BinToDec(String n) {
+        String num = n;
+        int dec_value = 0;
+        // Initializing base value to 1, i.e 2^0
+        int base = 1;
+        int len = num.length();
+        for (int i = len - 1; i >= 0; i--) {
+            if (num.charAt(i) == '1') {
+                dec_value += base;
+            }
+            base = base * 2;
+        }
+        return dec_value;
+    }
+
+    public static String DecToBin(int n) {
+        // array to store binary number
+        int[] binaryNum = new int[1000];
+
+        int i = 0;
+        while (n > 0) {
+            binaryNum[i] = n % 2;
+            n = n / 2;
+            i++;
+        }
+        String bin = "";
+        for (int j = i - 1; j >= 0; j--) {
+//            System.out.print(binaryNum[j]);
+            bin += binaryNum[j];
+        }
+        return bin;
+    }
 }

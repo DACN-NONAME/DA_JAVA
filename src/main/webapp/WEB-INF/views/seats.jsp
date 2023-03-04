@@ -1,3 +1,4 @@
+<%@page import="com.noname.config.Utils"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp" />
 <!-- ==========Banner-Section========== -->
@@ -71,9 +72,10 @@
                                             if ((j == 1 || j == 3) && k == 3) {
                                                 break;
                                             }
+                                            String code_seat = Integer.toBinaryString((int) i) + Utils.IntToBin(index);
                                     %>
-                                    <li class="single-seat seat-free" data-price="${tickets[0].price}">
-                                        <img src="./assets/images/movie/seat01-free.png" alt="seat">
+                                    <li class="single-seat seat-free" data-price="${tickets[0].price}" data-code-seat="<%= Utils.BinToDec(code_seat)%>">
+                                        <img src="./assets/images/movie/seat01-free.png" alt="seat" />
                                         <span class="sit-num"><%= i%><%= index++%></span>
                                     </li>
                                     <%
@@ -112,9 +114,10 @@
                                             if ((j == 1 || j == 3) && k == 3) {
                                                 break;
                                             }
+                                            String code_seat = Integer.toBinaryString((int) i) + Utils.IntToBin(index);
                                     %>
-                                    <li class="single-seat seat-free" data-price="${tickets[1].price}">
-                                        <img src="./assets/images/movie/seat01-free.png" alt="seat">
+                                    <li class="single-seat seat-free" data-price="${tickets[1].price}" data-code-seat="<%= Utils.BinToDec(code_seat)%>">
+                                        <img src="./assets/images/movie/seat01-free.png" alt="seat" />
                                         <span class="sit-num"><%= i%><%= index++%></span>
                                     </li>
                                     <%
@@ -150,9 +153,10 @@
                                             if ((j == 1 || j == 3) && k == 2) {
                                                 break;
                                             }
+                                            String code_seat = Integer.toBinaryString((int) 'J') + Utils.IntToBin(index);
                                     %>
-                                    <li class="single-seat seat-free-two" data-price="${tickets[2].price}">
-                                        <img src="./assets/images/movie/seat02-free.png" alt="seat">
+                                    <li class="single-seat seat-free-two" data-price="${tickets[2].price}" data-code-seat="<%= Utils.BinToDec(code_seat)%>">
+                                        <img src="./assets/images/movie/seat02-free.png" alt="seat" />
                                         <span class="sit-num">J<%= index++%> J<%= index++%></span>
                                     </li>
                                     <%
@@ -173,14 +177,14 @@
             <div class="proceed-to-book">
                 <div class="book-item">
                     <span>Ghế đã chọn</span>
-                    <h3 class="title"><span id="chose-seat"></span></h3>
+                    <h3 class="title"><span id="chose-seat"></span><span id="code-seat" style="display: none;"></span></h3>
                 </div>
                 <div class="book-item">
                     <span>Tạm tính</span>
                     <h3 class="title" id="price">0 đ</h3>
                 </div>
                 <div class="book-item">
-                    <a href="javascript:" class="custom-button">Thanh toán</a>
+                    <a href="javascript:" onclick="redirectPurchase(${schedule.id})" class="custom-button">Thanh toán</a>
                 </div>
             </div>
         </div>

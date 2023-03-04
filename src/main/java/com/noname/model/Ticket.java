@@ -52,7 +52,23 @@ public class Ticket {
     public void setType(String type) {
         this.type = type;
     }
+
+    /**
+     * @return the seat
+     */
+    public String getSeat() {
+        return seat;
+    }
+
+    /**
+     * @param seat the seat to set
+     */
+    public void setSeat(String seat) {
+        this.seat = seat;
+    }
+
     private int id;
     private int price;
     private String type;
+    private String seat;
 }
