@@ -54,20 +54,6 @@ public class Booking_detail {
     }
 
     /**
-     * @return the schedule_id
-     */
-    public int getSchedule_id() {
-        return schedule_id;
-    }
-
-    /**
-     * @param schedule_id the schedule_id to set
-     */
-    public void setSchedule_id(int schedule_id) {
-        this.schedule_id = schedule_id;
-    }
-
-    /**
      * @return the seat
      */
     public String getSeat() {
@@ -98,7 +84,6 @@ public class Booking_detail {
     private int id;
     private int booking_id;
     private int ticket_id;
-    private int schedule_id;
     private String seat;
     private int price;
 }

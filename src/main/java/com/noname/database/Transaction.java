@@ -23,9 +23,9 @@ public class Transaction {
     private PreparedStatement pstmt = null;
 
     public void begin() throws SQLException {
-        stmt = conn.createStatement();
         conn = DriverManager.getConnection(Utils.DB_MYSQL);
         conn.setAutoCommit(false);
+        stmt = conn.createStatement();
     }
 
     public void commit() throws SQLException {
@@ -77,6 +77,10 @@ public class Transaction {
         return stmt.executeUpdate(sql);
     }
 
+    public int UpdateStmt(String sql) throws SQLException {
+        return stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+    }
+
     public int Update(String sql, String[] params) throws SQLException {
         pstmt = conn.prepareStatement(sql);
         int i = 1;
@@ -84,5 +88,30 @@ public class Transaction {
             pstmt.setString(i++, ele);
         }
         return pstmt.executeUpdate();
+    }
+
+    public int UpdatePstmt(String sql, String[] params) throws SQLException {
+        pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        int i = 1;
+        for (String ele : params) {
+            pstmt.setString(i++, ele);
+        }
+        return pstmt.executeUpdate();
+    }
+
+    public int GetIdByStmt() throws SQLException {
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+        return 0;
+    }
+
+    public int GetIdByPstmt() throws SQLException {
+        ResultSet rs = pstmt.getGeneratedKeys();
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+        return 0;
     }
 }

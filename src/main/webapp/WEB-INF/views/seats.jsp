@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.noname.config.Utils"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp" />
@@ -56,6 +57,7 @@
             <div class="screen-wrapper">
                 <ul class="seat-area">
                     <%
+                        HashMap<String, String> listBookingDetails = (HashMap) request.getAttribute("booking_details");
                         for (char i = 'A'; i <= 'D'; i++) {
                     %>
                     <li class="seat-line">
@@ -73,9 +75,10 @@
                                                 break;
                                             }
                                             String code_seat = Integer.toBinaryString((int) i) + Utils.IntToBin(index);
+                                            boolean seat_free = listBookingDetails.get(i + String.valueOf(index)) == null ? true : false;
                                     %>
-                                    <li class="single-seat seat-free" data-price="${tickets[0].price}" data-code-seat="<%= Utils.BinToDec(code_seat)%>">
-                                        <img src="./assets/images/movie/seat01-free.png" alt="seat" />
+                                    <li class="single-seat <%= seat_free ? "seat-free" : ""%>" data-price="${tickets[0].price}" data-code-seat="<%= Utils.BinToDec(code_seat)%>">
+                                        <img src="./assets/images/movie/seat01<%= seat_free ? "-free" : ""%>.png" alt="seat" />
                                         <span class="sit-num"><%= i%><%= index++%></span>
                                     </li>
                                     <%
@@ -115,9 +118,10 @@
                                                 break;
                                             }
                                             String code_seat = Integer.toBinaryString((int) i) + Utils.IntToBin(index);
+                                            boolean seat_free = listBookingDetails.get(i + String.valueOf(index)) == null ? true : false;
                                     %>
-                                    <li class="single-seat seat-free" data-price="${tickets[1].price}" data-code-seat="<%= Utils.BinToDec(code_seat)%>">
-                                        <img src="./assets/images/movie/seat01-free.png" alt="seat" />
+                                    <li class="single-seat <%= seat_free ? "seat-free" : ""%>" data-price="${tickets[1].price}" data-code-seat="<%= Utils.BinToDec(code_seat)%>">
+                                        <img src="./assets/images/movie/seat01<%= seat_free ? "-free" : ""%>.png" alt="seat" />
                                         <span class="sit-num"><%= i%><%= index++%></span>
                                     </li>
                                     <%
@@ -154,9 +158,10 @@
                                                 break;
                                             }
                                             String code_seat = Integer.toBinaryString((int) 'J') + Utils.IntToBin(index);
+                                            boolean seat_free = listBookingDetails.get("J" + String.valueOf(index) + " J" + String.valueOf(index + 1)) == null ? true : false;
                                     %>
-                                    <li class="single-seat seat-free-two" data-price="${tickets[2].price}" data-code-seat="<%= Utils.BinToDec(code_seat)%>">
-                                        <img src="./assets/images/movie/seat02-free.png" alt="seat" />
+                                    <li class="single-seat <%= seat_free ? "seat-free-two" : ""%>" data-price="${tickets[2].price}" data-code-seat="<%= Utils.BinToDec(code_seat)%>">
+                                        <img src="./assets/images/movie/seat02<%= seat_free ? "-free" : ""%>.png" alt="seat" />
                                         <span class="sit-num">J<%= index++%> J<%= index++%></span>
                                     </li>
                                     <%

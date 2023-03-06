@@ -5,14 +5,14 @@
 package com.noname.database;
 
 import com.noname.config.Utils;
+import com.noname.model.Booking;
+import com.noname.model.Booking_detail;
 import com.noname.model.Category;
 import com.noname.model.Film;
 import com.noname.model.Room;
 import com.noname.model.Schedule;
 import com.noname.model.Ticket;
 import com.noname.model.User;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -248,6 +248,71 @@ public class DBQuery {
             t.setPrice(Integer.parseInt(String.valueOf(ele.get("price"))));
             t.setType(String.valueOf(ele.get("type")));
             list.add(t);
+        }
+        return list;
+    }
+
+    public List<Booking_detail> GetBookingDetailsByScheduleId(int sid) {
+        List<Map<String, Object>> ls = db.Query("SELECT BD.* FROM booking_detail BD LEFT JOIN booking B ON BD.booking_id = B.id WHERE B.schedule_id = " + sid);
+        List<Booking_detail> list = new ArrayList<>();
+        for (Map<String, Object> ele : ls) {
+            Booking_detail bd = new Booking_detail();
+            bd.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            bd.setBooking_id(Integer.parseInt(String.valueOf(ele.get("booking_id"))));
+            bd.setTicket_id(Integer.parseInt(String.valueOf(ele.get("ticket_id"))));
+            bd.setSeat(String.valueOf(ele.get("seat")));
+            bd.setPrice(Integer.parseInt(String.valueOf(ele.get("price"))));
+            list.add(bd);
+        }
+        return list;
+    }
+
+    public List<Booking> GetBookingsByUserId(int uid) {
+        List<Map<String, Object>> ls = db.Query("SELECT B.*, F.id AS film_id, F.name AS film_name, F.poster AS film_poster FROM booking B LEFT JOIN schedule S ON B.schedule_id = S.id LEFT JOIN film F ON S.film_id = F.id WHERE B.user_id = " + uid);
+        List<Booking> list = new ArrayList<>();
+        for (Map<String, Object> ele : ls) {
+            Booking b = new Booking();
+            b.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            b.setUser_id(Integer.parseInt(String.valueOf(ele.get("user_id"))));
+            b.setSchedule_id(Integer.parseInt(String.valueOf(ele.get("schedule_id"))));
+            b.setTotal_price(Integer.parseInt(String.valueOf(ele.get("total_price"))));
+            b.setCreated_at(String.valueOf(ele.get("created_at")).split("T")[0]);
+            b.setFilm_id(Integer.parseInt(String.valueOf(ele.get("film_id"))));
+            b.setFilm_name(String.valueOf(ele.get("film_name")));
+            b.setFilm_poster(String.valueOf(ele.get("film_poster")));
+            list.add(b);
+        }
+        return list;
+    }
+
+    public Booking GetBooking(int id) {
+        List<Map<String, Object>> ls = db.Query("SELECT B.*, F.id AS film_id, F.name AS film_name, F.poster AS film_poster FROM booking B LEFT JOIN schedule S ON B.schedule_id = S.id LEFT JOIN film F ON S.film_id = F.id WHERE B.id = " + id);
+        for (Map<String, Object> ele : ls) {
+            Booking b = new Booking();
+            b.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            b.setUser_id(Integer.parseInt(String.valueOf(ele.get("user_id"))));
+            b.setSchedule_id(Integer.parseInt(String.valueOf(ele.get("schedule_id"))));
+            b.setTotal_price(Integer.parseInt(String.valueOf(ele.get("total_price"))));
+            b.setCreated_at(String.valueOf(ele.get("created_at")));
+            b.setFilm_id(Integer.parseInt(String.valueOf(ele.get("film_id"))));
+            b.setFilm_name(String.valueOf(ele.get("film_name")));
+            b.setFilm_poster(String.valueOf(ele.get("film_poster")));
+            return b;
+        }
+        return null;
+    }
+
+    public List<Booking_detail> GetBookingDetailsByBookingId(int sid) {
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM booking_detail WHERE booking_id = " + sid);
+        List<Booking_detail> list = new ArrayList<>();
+        for (Map<String, Object> ele : ls) {
+            Booking_detail bd = new Booking_detail();
+            bd.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            bd.setBooking_id(Integer.parseInt(String.valueOf(ele.get("booking_id"))));
+            bd.setTicket_id(Integer.parseInt(String.valueOf(ele.get("ticket_id"))));
+            bd.setSeat(String.valueOf(ele.get("seat")));
+            bd.setPrice(Integer.parseInt(String.valueOf(ele.get("price"))));
+            list.add(bd);
         }
         return list;
     }

@@ -38,7 +38,7 @@
         <div class="footer-bottom">
             <div class="footer-bottom-area">
                 <div class="left">
-                    <p>Copyright � 2022. All Rights Reserved By <a href="#0">Boleto </a></p>
+                    <p>Copyright &copy; 2022. All Rights Reserved By <a href="#0">Boleto </a></p>
                 </div>
                 <ul class="links">
                     <li>
@@ -118,7 +118,7 @@
     }
 
     function redirectPurchase(sid) {
-        window.location.href = './purchase?schedule_id=' + sid + 'seats=' + $('#code-seat').text().trim(',');
+        window.location.href = './purchase?schedule_id=' + sid + '&seats=' + $('#code-seat').text().trim(',');
     }
 </script>
 </body>

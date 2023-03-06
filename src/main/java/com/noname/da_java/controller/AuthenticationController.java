@@ -4,6 +4,7 @@
  */
 package com.noname.da_java.controller;
 
+import com.noname.config.Utils;
 import com.noname.database.DBQuery;
 import com.noname.model.User;
 import javax.servlet.http.HttpSession;
@@ -29,9 +30,12 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/sign-in", method = RequestMethod.POST)
-    public String SignInProcess(HttpSession session, @ModelAttribute() User user, Model model) {
+    public String SignInProcess(HttpSession session, @RequestParam(required = false) String url, @ModelAttribute() User user, Model model) {
         if (dbq.Login(user.getEmail(), user.getPassword())) {
             session.setAttribute("user", dbq.GetUserByEmail(user.getEmail()));
+            if (url != null && !url.equals("")) {
+                return "redirect:" + Utils.URLDecode(url);
+            }
             return "redirect:/";
         }
         model.addAttribute("msg", "Tài khoản không chính xác!");
