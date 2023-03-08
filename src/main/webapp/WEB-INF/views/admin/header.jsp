@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="vi">
@@ -7,16 +8,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/admin/css/bootstrap-reboot.min.css" />
-        <link rel="stylesheet" href="../assets/admin/css/bootstrap-grid.min.css" />
-        <link rel="stylesheet" href="../assets/admin/css/magnific-popup.css" />
-        <link rel="stylesheet" href="../assets/admin/css/jquery.mCustomScrollbar.min.css" />
-        <link rel="stylesheet" href="../assets/admin/css/select2.min.css" />
-        <link rel="stylesheet" href="../assets/admin/css/admin.css" />
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/bootstrap-reboot.min.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/bootstrap-grid.min.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/magnific-popup.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/jquery.mCustomScrollbar.min.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/select2.min.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/admin.css"/>"/>
 
         <!-- Favicons -->
-        <link rel="icon" type="image/png" href="../assets/admin/icon/favicon-32x32.png" sizes="32x32" />
-        <link rel="apple-touch-icon" href="../assets/admin/icon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" href="<c:url value="/assets/admin/icon/favicon-32x32.png"/>" sizes="32x32" />
+        <link rel="apple-touch-icon" href="<c:url value="/assets/admin/icon/favicon-32x32.png"/>" />
 
         <meta name="description" content="" />
         <meta name="keywords" content="" />

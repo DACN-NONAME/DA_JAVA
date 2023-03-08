@@ -11,17 +11,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/all.min.css">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="assets/css/flaticon.css">
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="assets/css/odometer.css">
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="assets/css/nice-select.css">
-        <link rel="stylesheet" href="assets/css/jquery.animatedheadline.css">
-        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/all.min.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/animate.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/flaticon.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/magnific-popup.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/odometer.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/owl.carousel.min.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/owl.theme.default.min.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/nice-select.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/jquery.animatedheadline.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/main.css"/>"/>
 
         <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
@@ -56,7 +56,7 @@
                 <div class="header-wrapper">
                     <div class="logo">
                         <a href="index.html">
-                            <img src="./assets/images/logo/logo.png" alt="logo">
+                            <img src="<c:url value="/assets/images/logo/logo.png" />" alt="logo">
                         </a>
                     </div>
                     <ul class="menu">

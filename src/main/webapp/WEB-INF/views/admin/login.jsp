@@ -8,15 +8,15 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="<c:url value="/assets/admin/css/bootstrap-reboot.min.css" />" />
-        <link rel="stylesheet" href="../assets/admin/css/bootstrap-grid.min.css" />
-        <link rel="stylesheet" href="../assets/admin/css/magnific-popup.css" />
-        <link rel="stylesheet" href="../assets/admin/css/jquery.mCustomScrollbar.min.css" />
-        <link rel="stylesheet" href="../assets/admin/css/select2.min.css" />
-        <link rel="stylesheet" href="../assets/admin/css/admin.css" />
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/bootstrap-grid.min.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/magnific-popup.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/jquery.mCustomScrollbar.min.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/select2.min.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/admin/css/admin.css" />"/>
 
         <!-- Favicons -->
-        <link rel="icon" type="image/png" href="../assets/admin/icon/favicon-32x32.png" sizes="32x32" />
-        <link rel="apple-touch-icon" href="../assets/admin/icon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" href="<c:url value="/assets/admin/icon/favicon-32x32.png"/>" sizes="32x32" />
+        <link rel="apple-touch-icon" href="<c:url value="/assets/admin/icon/favicon-32x32.png" />"/>
 
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -26,7 +26,7 @@
     </head>
     <body>
 
-        <div class="sign section--bg" data-bg="../assets/admin/img/section/section.jpg">
+        <div class="sign section--bg" data-bg="<c:url value="/assets/admin/img/section/section.jpg"/>"/>
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -64,12 +64,12 @@
         </div>
 
         <!-- JS -->
-        <script src="../assets/admin/js/jquery-3.6.0.min.js"></script>
-        <script src="../assets/admin/js/bootstrap.bundle.min.js"></script>
-        <script src="../assets/admin/js/jquery.magnific-popup.min.js"></script>
-        <script src="../assets/admin/js/jquery.mousewheel.min.js"></script>
-        <script src="../assets/admin/js/jquery.mCustomScrollbar.min.js"></script>
-        <script src="../assets/admin/js/select2.min.js"></script>
-        <script src="../assets/admin/js/admin.js"></script>
+        <script src="<c:url value="/assets/admin/js/jquery-3.6.0.min.js"/>"></script>
+        <script src="<c:url value="/assets/admin/js/bootstrap.bundle.min.js"/>"></script>
+        <script src="<c:url value="/assets/admin/js/jquery.magnific-popup.min.js"/>"></script>
+        <script src="<c:url value="/assets/admin/js/jquery.mousewheel.min.js"/>"></script>
+        <script src="<c:url value="/assets/admin/js/jquery.mCustomScrollbar.min.js"/>"></script>
+        <script src="<c:url value="/assets/admin/js/select2.min.js"/>"></script>
+        <script src="<c:url value="/assets/admin/js/admin.js"/>"></script>
     </body>
 </html>
