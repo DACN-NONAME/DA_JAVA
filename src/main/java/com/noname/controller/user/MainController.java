@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.noname.da_java.controller;
+package com.noname.controller.user;
 
 import com.noname.database.DBQuery;
 import org.springframework.stereotype.Controller;

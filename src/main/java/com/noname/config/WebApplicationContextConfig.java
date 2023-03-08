@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.noname.da_java")
+@ComponentScan(basePackages = "com.noname.controller")
 public class WebApplicationContextConfig implements WebMvcConfigurer {
 
     @Override

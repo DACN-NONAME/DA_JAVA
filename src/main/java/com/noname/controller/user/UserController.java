@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.noname.da_java.controller;
+package com.noname.controller.user;
 
 import com.noname.database.DBQuery;
 import com.noname.model.Booking;
@@ -53,7 +53,7 @@ public class UserController {
 
     @RequestMapping(value = "/logout")
     public String Logout(HttpSession session) {
-        session.invalidate();
+        session.removeAttribute("user");
         return "redirect:/";
     }
 
