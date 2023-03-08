@@ -5,7 +5,7 @@
         <div class="footer-top">
             <div class="logo">
                 <a href="index-1.html">
-                    <img src=".<c:url value="/assets/images/footer/footer-logo.png"/>" alt="footer">
+                    <img src=".<c:url value="/assets/images/footer/footer-logo.png" />" alt="footer">
                 </a>
             </div>
             <ul class="social-icons">
@@ -39,7 +39,7 @@
         <div class="footer-bottom">
             <div class="footer-bottom-area">
                 <div class="left">
-                    <p>Copyright &copy; 2022. All Rights Reserved By <a href="#0">Boleto </a></p>
+                    <p>Copyright &copy; 2023. All Rights Reserved By <a href="#0">NoName</a></p>
                 </div>
                 <ul class="links">
                     <li>
@@ -65,20 +65,20 @@
 <!-- ==========Newslater-Section========== -->
 
 
-<script src="<c:url value="/assets/js/jquery-3.3.1.min.js"/>"></script>
-<script src="<c:url value="/assets/js/modernizr-3.6.0.min.js"/>"></script>
-<script src="<c:url value="/assets/js/plugins.js"/>"></script>
-<script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
-<script src="<c:url value="/assets/js/heandline.js"/>"></script>
-<script src="<c:url value="/assets/js/isotope.pkgd.min.js"/>"></script>
-<script src="<c:url value="/assets/js/magnific-popup.min.js"/>"></script>
-<script src="<c:url value="/assets/js/owl.carousel.min.js"/>"></script>
-<script src="<c:url value="/assets/js/wow.min.js"/>"></script>
-<script src="<c:url value="/assets/js/countdown.min.js"/>"></script>
-<script src="<c:url value="/assets/js/odometer.min.js"/>"></script>
-<script src="<c:url value="/assets/js/viewport.jquery.js"/>"></script>
-<script src="<c:url value="/assets/js/nice-select.js"/>"></script>
-<script src="<c:url value="/assets/js/main.js"/>"></script>
+<script src="<c:url value="/assets/js/jquery-3.3.1.min.js" />"></script>
+<script src="<c:url value="/assets/js/modernizr-3.6.0.min.js" />"></script>
+<script src="<c:url value="/assets/js/plugins.js" />"></script>
+<script src="<c:url value="/assets/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/assets/js/heandline.js" />"></script>
+<script src="<c:url value="/assets/js/isotope.pkgd.min.js" />"></script>
+<script src="<c:url value="/assets/js/magnific-popup.min.js" />"></script>
+<script src="<c:url value="/assets/js/owl.carousel.min.js" />"></script>
+<script src="<c:url value="/assets/js/wow.min.js" />"></script>
+<script src="<c:url value="/assets/js/countdown.min.js" />"></script>
+<script src="<c:url value="/assets/js/odometer.min.js" />"></script>
+<script src="<c:url value="/assets/js/viewport.jquery.js" />"></script>
+<script src="<c:url value="/assets/js/nice-select.js" />"></script>
+<script src="<c:url value="/assets/js/main.js" />"></script>
 <script>
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);

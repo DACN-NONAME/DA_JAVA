@@ -40,6 +40,20 @@ public class Booking {
     }
 
     /**
+     * @return the user_full_name
+     */
+    public String getUser_full_name() {
+        return user_full_name;
+    }
+
+    /**
+     * @param user_full_name the user_full_name to set
+     */
+    public void setUser_full_name(String user_full_name) {
+        this.user_full_name = user_full_name;
+    }
+
+    /**
      * @return the schedule_id
      */
     public int getSchedule_id() {
@@ -51,6 +65,20 @@ public class Booking {
      */
     public void setSchedule_id(int schedule_id) {
         this.schedule_id = schedule_id;
+    }
+
+    /**
+     * @return the schedule_start_time
+     */
+    public String getSchedule_start_time() {
+        return schedule_start_time;
+    }
+
+    /**
+     * @param schedule_start_time the schedule_start_time to set
+     */
+    public void setSchedule_start_time(String schedule_start_time) {
+        this.schedule_start_time = schedule_start_time;
     }
 
     /**
@@ -139,7 +167,9 @@ public class Booking {
 
     private int id;
     private int user_id;
+    private String user_full_name;
     private int schedule_id;
+    private String schedule_start_time;
     private int total_price;
     private String created_at;
     private String updated_at;

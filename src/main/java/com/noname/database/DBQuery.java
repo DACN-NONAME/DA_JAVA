@@ -8,6 +8,7 @@ import com.noname.config.Utils;
 import com.noname.model.Booking;
 import com.noname.model.Booking_detail;
 import com.noname.model.Category;
+import com.noname.model.Country;
 import com.noname.model.Film;
 import com.noname.model.Room;
 import com.noname.model.Schedule;
@@ -103,7 +104,7 @@ public class DBQuery {
         return null;
     }
 
-    public int getCountFilms() {
+    public int GetCountFilms() {
         List<Map<String, Object>> ls = db.Query("SELECT COUNT(id) AS total FROM film");
         try {
             for (Map<String, Object> ele : ls) {
@@ -176,9 +177,36 @@ public class DBQuery {
         return null;
     }
 
+    public List<User> GetUsers() {
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM user ORDER BY id DESC");
+        List<User> list = new ArrayList<>();
+        for (Map<String, Object> ele : ls) {
+            User s = new User();
+            s.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            s.setFull_name(String.valueOf(ele.get("full_name")));
+            s.setEmail(String.valueOf(ele.get("email")));
+            s.setPhone(String.valueOf(ele.get("phone")));
+            s.setCreated_at(String.valueOf(ele.get("created_at")).split("T")[0]);
+            list.add(s);
+        }
+        return list;
+    }
+
     public boolean UpdateUser(User user) {
         String[] params = new String[]{user.getFull_name(), user.getPhone(), user.getAddress(), String.valueOf(user.getId())};
         return db.Update("UPDATE user SET full_name = ?, phone = ?, address = ? WHERE id = ?", params) > 0;
+    }
+
+    public int GetCountUsers() {
+        List<Map<String, Object>> ls = db.Query("SELECT COUNT(id) AS total FROM user");
+        try {
+            for (Map<String, Object> ele : ls) {
+                return Integer.parseInt(String.valueOf(ele.get("total")));
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("error get count users: " + ex.toString());
+        }
+        return 0;
     }
 
     public List<Schedule> GetSchedulesByFilmIdByDate(int film_id, String date) {
@@ -239,6 +267,27 @@ public class DBQuery {
         return null;
     }
 
+    public List<Schedule> GetSchedules() {
+        List<Map<String, Object>> ls = db.Query("SELECT S.*, F.name AS film_name, F.poster AS film_poster, C.name AS cinema_name, C.address AS cinema_address, R.name AS room_name FROM schedule S LEFT JOIN cinema C ON S.cinema_id = C.id LEFT JOIN room R ON S.room_id = R.id LEFT JOIN film F ON S.film_id = F.id ORDER BY S.id DESC");
+        List<Schedule> list = new ArrayList<>();
+        for (Map<String, Object> ele : ls) {
+            Schedule s = new Schedule();
+            s.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            s.setFilm_id(Integer.parseInt(String.valueOf(ele.get("film_id"))));
+            s.setFilm_name(String.valueOf(ele.get("film_name")));
+            s.setFilm_poster(String.valueOf(ele.get("film_poster")));
+            s.setCinema_id(Integer.parseInt(String.valueOf(ele.get("cinema_id"))));
+            s.setCinema_name(String.valueOf(ele.get("cinema_name")));
+            s.setCinema_address(String.valueOf(ele.get("cinema_address")));
+            s.setRoom_id(Integer.parseInt(String.valueOf(ele.get("room_id"))));
+            s.setRoom_name(String.valueOf(ele.get("room_name")));
+            String[] start_time = String.valueOf(ele.get("start_time")).replace("T", " ").split(":");
+            s.setStart_time(start_time[0] + ":" + start_time[1]);
+            list.add(s);
+        }
+        return list;
+    }
+
     public List<Ticket> GetTickets() {
         List<Map<String, Object>> ls = db.Query("SELECT * FROM ticket");
         List<Ticket> list = new ArrayList<>();
@@ -263,6 +312,26 @@ public class DBQuery {
             bd.setSeat(String.valueOf(ele.get("seat")));
             bd.setPrice(Integer.parseInt(String.valueOf(ele.get("price"))));
             list.add(bd);
+        }
+        return list;
+    }
+
+    public List<Booking> GetBookings() {
+        List<Map<String, Object>> ls = db.Query("SELECT B.*, U.full_name AS user_full_name, S.start_time AS schedule_start_time, F.id AS film_id, F.name AS film_name, F.poster AS film_poster FROM booking B LEFT JOIN schedule S ON B.schedule_id = S.id LEFT JOIN film F ON S.film_id = F.id LEFT JOIN user U ON B.user_id = U.id ORDER BY B.id DESC");
+        List<Booking> list = new ArrayList<>();
+        for (Map<String, Object> ele : ls) {
+            Booking b = new Booking();
+            b.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            b.setUser_id(Integer.parseInt(String.valueOf(ele.get("user_id"))));
+            b.setUser_full_name(String.valueOf(ele.get("user_full_name")));
+            b.setSchedule_id(Integer.parseInt(String.valueOf(ele.get("schedule_id"))));
+            b.setSchedule_start_time(String.valueOf(ele.get("schedule_start_time")).replace("T", " "));
+            b.setTotal_price(Integer.parseInt(String.valueOf(ele.get("total_price"))));
+            b.setCreated_at(String.valueOf(ele.get("created_at")).split("T")[0]);
+            b.setFilm_id(Integer.parseInt(String.valueOf(ele.get("film_id"))));
+            b.setFilm_name(String.valueOf(ele.get("film_name")));
+            b.setFilm_poster(String.valueOf(ele.get("film_poster")));
+            list.add(b);
         }
         return list;
     }
@@ -316,4 +385,41 @@ public class DBQuery {
         }
         return list;
     }
+
+    public int GetCountBookings() {
+        List<Map<String, Object>> ls = db.Query("SELECT COUNT(id) AS total FROM booking");
+        try {
+            for (Map<String, Object> ele : ls) {
+                return Integer.parseInt(String.valueOf(ele.get("total")));
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("error get count bookings: " + ex.toString());
+        }
+        return 0;
+    }
+
+    public List<Country> GetCountries() {
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM country");
+        List<Country> list = new ArrayList<>();
+        for (Map<String, Object> ele : ls) {
+            Country c = new Country();
+            c.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            c.setName(String.valueOf(ele.get("name")));
+            list.add(c);
+        }
+        return list;
+    }
+
+    public int GetProfit() {
+        List<Map<String, Object>> ls = db.Query("SELECT SUM(total_price) AS total FROM booking");
+        try {
+            for (Map<String, Object> ele : ls) {
+                return Integer.parseInt(String.valueOf(ele.get("total")));
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("error get profit: " + ex.toString());
+        }
+        return 0;
+    }
+
 }

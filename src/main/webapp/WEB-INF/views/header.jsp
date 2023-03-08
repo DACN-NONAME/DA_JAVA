@@ -12,18 +12,18 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css" />"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/all.min.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/animate.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/flaticon.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/magnific-popup.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/odometer.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/owl.carousel.min.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/owl.theme.default.min.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/nice-select.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/jquery.animatedheadline.css"/>"/>
-        <link rel="stylesheet" href="<c:url value="/assets/css/main.css"/>"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/all.min.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/animate.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/flaticon.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/magnific-popup.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/odometer.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/owl.carousel.min.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/owl.theme.default.min.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/nice-select.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/jquery.animatedheadline.css" />"/>
+        <link rel="stylesheet" href="<c:url value="/assets/css/main.css" />"/>
 
-        <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="<c:url value="/assets/images/favicon.png" />" type="image/x-icon">
 
         <c:choose>
             <c:when test="${not empty title}"><title>Boleto  - ${title}</title></c:when>
@@ -55,7 +55,7 @@
             <div class="container">
                 <div class="header-wrapper">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="./">
                             <img src="<c:url value="/assets/images/logo/logo.png" />" alt="logo">
                         </a>
                     </div>
@@ -67,7 +67,7 @@
                             <a href="./films">Phim</a>
                         </li>
                         <li>
-                            <a href="contact.html">Thể loại</a>
+                            <a href="#">Thể loại</a>
                             <ul class="submenu">
                                 <%
                                     DBQuery dbq = new DBQuery();

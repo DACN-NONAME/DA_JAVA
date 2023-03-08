@@ -42,6 +42,34 @@ public class Schedule {
     }
 
     /**
+     * @return the film_name
+     */
+    public String getFilm_name() {
+        return film_name;
+    }
+
+    /**
+     * @param film_name the film_name to set
+     */
+    public void setFilm_name(String film_name) {
+        this.film_name = film_name;
+    }
+
+    /**
+     * @return the film_poster
+     */
+    public String getFilm_poster() {
+        return film_poster;
+    }
+
+    /**
+     * @param film_poster the film_poster to set
+     */
+    public void setFilm_poster(String film_poster) {
+        this.film_poster = film_poster;
+    }
+
+    /**
      * @return the cinema_id
      */
     public int getCinema_id() {
@@ -141,6 +169,8 @@ public class Schedule {
 
     private int id;
     private int film_id;
+    private String film_name;
+    private String film_poster;
     private int cinema_id;
     private String cinema_name;
     private String cinema_address;

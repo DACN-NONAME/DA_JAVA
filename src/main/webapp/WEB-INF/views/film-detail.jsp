@@ -46,7 +46,7 @@
 <section class="book-section bg-one">
     <div class="container">
         <div class="book-wrapper offset-lg-3">
-            <a href="./tickets?film_id=${film.id}&date=${date}" class="custom-button">Đặt vé</a>
+            <a href="./schedules?film_id=${film.id}&date=${date}" class="custom-button">Đặt vé</a>
         </div>
     </div>
 </section>
