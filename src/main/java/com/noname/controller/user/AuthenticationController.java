@@ -5,7 +5,7 @@
 package com.noname.controller.user;
 
 import com.noname.config.Utils;
-import com.noname.database.DBQuery;
+import com.noname.database.DBUser;
 import com.noname.model.User;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AuthenticationController {
 
-    DBQuery dbq = new DBQuery();
+    DBUser dbUser = new DBUser();
 
     @RequestMapping(value = "/sign-in")
     public String SignIn(Model model) {
@@ -31,8 +31,8 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/sign-in", method = RequestMethod.POST)
     public String SignInProcess(HttpSession session, @RequestParam(required = false) String url, @ModelAttribute() User user, Model model) {
-        if (dbq.Login(user.getEmail(), user.getPassword())) {
-            session.setAttribute("user", dbq.GetUserByEmail(user.getEmail()));
+        if (dbUser.Login(user.getEmail(), user.getPassword())) {
+            session.setAttribute("user", dbUser.GetUserByEmail(user.getEmail()));
             if (url != null && !url.equals("")) {
                 return "redirect:" + Utils.URLDecode(url);
             }
@@ -52,9 +52,9 @@ public class AuthenticationController {
 //        System.out.println("user: " + user.getEmail());
 //        System.out.println("pass2: " + password2);
         if (user.getPassword().equals(password2)) {
-            int is_reg = dbq.Register(user);
+            int is_reg = dbUser.Register(user);
             if (is_reg == 1) {
-                session.setAttribute("user", dbq.GetUserByEmail(user.getEmail()));
+                session.setAttribute("user", dbUser.GetUserByEmail(user.getEmail()));
                 return "redirect:/";
             } else {
                 model.addAttribute("msg", is_reg == 0 ? "Email đã tồn tại!" : "Có lỗi xảy ra, vui lòng thử lại!");

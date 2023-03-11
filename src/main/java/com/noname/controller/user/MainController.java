@@ -4,7 +4,7 @@
  */
 package com.noname.controller.user;
 
-import com.noname.database.DBQuery;
+import com.noname.database.DBFilm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-    private final DBQuery dbq = new DBQuery();
+    DBFilm dbFilm = new DBFilm();
 
     @RequestMapping(value = "/")
     public String index(Model model) {
-        model.addAttribute("films", dbq.GetFilms());
+        model.addAttribute("films", dbFilm.GetFilms());
         return "index";
     }
 }

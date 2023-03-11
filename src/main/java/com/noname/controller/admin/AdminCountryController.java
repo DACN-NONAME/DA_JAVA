@@ -4,7 +4,7 @@
  */
 package com.noname.controller.admin;
 
-import com.noname.database.DBQuery;
+import com.noname.database.DBCountry;
 import com.noname.model.Country;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AdminCountryController {
 
-    DBQuery dbq = new DBQuery();
+    DBCountry dbCountry = new DBCountry();
     Session ss = new Session();
 
     @RequestMapping(value = "/admin/countries")
     public String Countries(HttpSession session, Model model) {
         if (ss.isLoggedIn(session)) {
-            model.addAttribute("countries", dbq.GetCountries());
+            model.addAttribute("countries", dbCountry.GetCountries());
             return "admin/countries";
         }
         return "redirect:/admin/login";
@@ -33,7 +33,7 @@ public class AdminCountryController {
         if (ss.isLoggedIn(session)) {
             Country c = null;
             try {
-                c = dbq.GetCountry(Integer.parseInt(id));
+                c = dbCountry.GetCountry(Integer.parseInt(id));
             } catch (NumberFormatException ex) {
             }
             if (c != null) {
@@ -53,9 +53,9 @@ public class AdminCountryController {
     public String CountryProcess(HttpSession session, Country country, Model model) {
         if (ss.isLoggedIn(session)) {
             if (country.getId() == 0) {
-                dbq.InsertCountry(country);
+                dbCountry.InsertCountry(country);
             } else {
-                dbq.UpdateCountry(country);
+                dbCountry.UpdateCountry(country);
                 return "redirect:/admin/country?id=" + country.getId();
             }
             return "redirect:/admin/countries";
@@ -68,11 +68,11 @@ public class AdminCountryController {
         if (ss.isLoggedIn(session)) {
             Country c = null;
             try {
-                c = dbq.GetCountry(Integer.parseInt(id));
+                c = dbCountry.GetCountry(Integer.parseInt(id));
             } catch (NumberFormatException ex) {
             }
             if (c != null) {
-                dbq.DeleteCountry(c.getId());
+                dbCountry.DeleteCountry(c.getId());
             }
             return "redirect:/admin/countries";
         }

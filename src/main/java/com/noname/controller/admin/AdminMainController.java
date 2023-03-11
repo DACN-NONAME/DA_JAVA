@@ -4,7 +4,13 @@
  */
 package com.noname.controller.admin;
 
+import com.noname.database.DBBooking;
+import com.noname.database.DBCategory;
+import com.noname.database.DBFilm;
 import com.noname.database.DBQuery;
+import com.noname.database.DBSchedule;
+import com.noname.database.DBTicket;
+import com.noname.database.DBUser;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +21,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminMainController {
 
     DBQuery dbq = new DBQuery();
+    DBBooking dbBooking = new DBBooking();
+    DBCategory dbCategory = new DBCategory();
+    DBFilm dbFilm = new DBFilm();
+    DBSchedule dbSchedule = new DBSchedule();
+    DBTicket dbTicket = new DBTicket();
+    DBUser dbUser = new DBUser();
     Session ss = new Session();
 
     @RequestMapping(value = "/admin")
     public String Index(HttpSession session, Model model) {
         if (ss.isLoggedIn(session)) {
-            model.addAttribute("count_users", dbq.GetCountUsers());
-            model.addAttribute("count_bookings", dbq.GetCountBookings());
+            model.addAttribute("count_users", dbUser.GetCountUsers());
+            model.addAttribute("count_bookings", dbBooking.GetCountBookings());
             model.addAttribute("profit", dbq.GetProfit());
 
             return "admin/index";
@@ -32,7 +44,7 @@ public class AdminMainController {
     @RequestMapping(value = "/admin/categories")
     public String Categories(HttpSession session, Model model) {
         if (ss.isLoggedIn(session)) {
-            model.addAttribute("categories", dbq.GetCategories());
+            model.addAttribute("categories", dbCategory.GetCategories());
             return "admin/categories";
         }
         return "redirect:/admin/login";
@@ -41,7 +53,7 @@ public class AdminMainController {
     @RequestMapping(value = "/admin/films")
     public String Films(HttpSession session, Model model) {
         if (ss.isLoggedIn(session)) {
-            model.addAttribute("films", dbq.GetFilms());
+            model.addAttribute("films", dbFilm.GetFilms());
             return "admin/films";
         }
         return "redirect:/admin/login";
@@ -50,7 +62,7 @@ public class AdminMainController {
     @RequestMapping(value = "/admin/schedules")
     public String Schedules(HttpSession session, Model model) {
         if (ss.isLoggedIn(session)) {
-            model.addAttribute("schedules", dbq.GetSchedules());
+            model.addAttribute("schedules", dbSchedule.GetSchedules());
             return "admin/schedules";
         }
         return "redirect:/admin/login";
@@ -59,7 +71,7 @@ public class AdminMainController {
     @RequestMapping(value = "/admin/tickets")
     public String Tickets(HttpSession session, Model model) {
         if (ss.isLoggedIn(session)) {
-            model.addAttribute("tickets", dbq.GetTickets());
+            model.addAttribute("tickets", dbTicket.GetTickets());
             return "admin/tickets";
         }
         return "redirect:/admin/login";
@@ -68,7 +80,7 @@ public class AdminMainController {
     @RequestMapping(value = "/admin/users")
     public String Users(HttpSession session, Model model) {
         if (ss.isLoggedIn(session)) {
-            model.addAttribute("users", dbq.GetUsers());
+            model.addAttribute("users", dbUser.GetUsers());
             return "admin/users";
         }
         return "redirect:/admin/login";
@@ -77,7 +89,7 @@ public class AdminMainController {
     @RequestMapping(value = "/admin/bookings")
     public String Bookings(HttpSession session, Model model) {
         if (ss.isLoggedIn(session)) {
-            model.addAttribute("bookings", dbq.GetBookings());
+            model.addAttribute("bookings", dbBooking.GetBookings());
             return "admin/bookings";
         }
         return "redirect:/admin/login";

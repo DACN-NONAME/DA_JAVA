@@ -4,7 +4,11 @@
  */
 package com.noname.controller.user;
 
-import com.noname.database.DBQuery;
+import com.noname.database.DBBooking;
+import com.noname.database.DBFilm;
+import com.noname.database.DBSchedule;
+import com.noname.database.DBTicket;
+import com.noname.database.DBUser;
 import com.noname.model.Booking;
 import com.noname.model.Booking_detail;
 import com.noname.model.Film;
@@ -27,7 +31,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
 
-    DBQuery dbq = new DBQuery();
+    DBBooking dbBooking = new DBBooking();
+    DBFilm dbFilm = new DBFilm();
+    DBSchedule dbSchedule = new DBSchedule();
+    DBTicket dbTicket = new DBTicket();
+    DBUser dbUser = new DBUser();
 
     @RequestMapping(value = "/profile")
     public String Profile(HttpSession session, Model model) {
@@ -45,7 +53,7 @@ public class UserController {
         User u = (User) session.getAttribute("user");
         user.setId(u.getId());
         user.setEmail(u.getEmail());
-        if (dbq.UpdateUser(user)) {
+        if (dbUser.UpdateUser(user)) {
             session.setAttribute("user", user);
         }
         return "profile";
@@ -63,7 +71,7 @@ public class UserController {
             return "redirect:/";
         }
         User u = (User) session.getAttribute("user");
-        model.addAttribute("bookings", dbq.GetBookingsByUserId(u.getId()));
+        model.addAttribute("bookings", dbBooking.GetBookingsByUserId(u.getId()));
 
         return "history";
     }
@@ -72,17 +80,17 @@ public class UserController {
     public String BookingDetail(@RequestParam(required = false) String id, Model model) {
         try {
             int bid = Integer.parseInt(id);
-            Booking b = dbq.GetBooking(bid);
+            Booking b = dbBooking.GetBooking(bid);
             if (b == null) {
                 return "redirect:/";
             }
-            Film f = dbq.GetFilm(b.getFilm_id());
+            Film f = dbFilm.GetFilm(b.getFilm_id());
             model.addAttribute("title", "Thanh toán vé phim " + f.getName());
             model.addAttribute("film", f);
-            model.addAttribute("schedule", dbq.GetSchedule(b.getSchedule_id()));
+            model.addAttribute("schedule", dbSchedule.GetSchedule(b.getSchedule_id()));
 
-            List<Ticket> tickets = dbq.GetTickets();
-            List<Booking_detail> listSeats = dbq.GetBookingDetailsByBookingId(bid);
+            List<Ticket> tickets = dbTicket.GetTickets();
+            List<Booking_detail> listSeats = dbBooking.GetBookingDetailsByBookingId(bid);
             List<Ticket> listSeat1 = new ArrayList<>();
             List<Ticket> listSeat2 = new ArrayList<>();
             List<Ticket> listSeat3 = new ArrayList<>();

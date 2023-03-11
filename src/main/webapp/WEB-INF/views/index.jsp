@@ -24,7 +24,7 @@
             <div class="row align-items-center mb--20">
                 <div class="col-lg-6 mb-20">
                     <div class="search-ticket-header">
-                        <h6 class="category">welcome to Boleto </h6>
+                        <h6 class="category">welcome to NoName</h6>
                         <!--<h3 class="title">what are you looking for</h3>-->
                     </div>
                 </div>
@@ -41,59 +41,17 @@
             </div>
             <div class="tab-area">
                 <div class="tab-item active">
-                    <form class="ticket-search-form">
+                    <form class="ticket-search-form" action="<c:url value="/films" />" method="GET">
                         <div class="form-group large">
-                            <input type="text" placeholder="Tìm phim">
+                            <input type="text" placeholder="Tìm phim" name="keyword">
                             <button type="submit"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="./assets/images/ticket/city.png" alt="ticket">
-                            </div>
-                            <span class="type">city</span>
-                            <select class="select-bar">
-                                <option value="london">London</option>
-                                <option value="dhaka">dhaka</option>
-                                <option value="rosario">rosario</option>
-                                <option value="madrid">madrid</option>
-                                <option value="koltaka">kolkata</option>
-                                <option value="rome">rome</option>
-                                <option value="khoksa">khoksa</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="./assets/images/ticket/date.png" alt="ticket">
-                            </div>
-                            <span class="type">date</span>
-                            <select class="select-bar">
-                                <option value="26-12-19">23/10/2020</option>
-                                <option value="26-12-19">24/10/2020</option>
-                                <option value="26-12-19">25/10/2020</option>
-                                <option value="26-12-19">26/10/2020</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <div class="thumb">
-                                <img src="./assets/images/ticket/cinema.png" alt="ticket">
-                            </div>
-                            <span class="type">cinema</span>
-                            <select class="select-bar">
-                                <option value="Awaken">Awaken</option>
-                                <option value="dhaka">dhaka</option>
-                                <option value="rosario">rosario</option>
-                                <option value="madrid">madrid</option>
-                                <option value="koltaka">kolkata</option>
-                                <option value="rome">rome</option>
-                                <option value="khoksa">khoksa</option>
-                            </select>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</section>    
+</section>
 <!-- ==========Ticket-Search========== -->
 
 <!-- ==========Movie-Main-Section========== -->
@@ -128,45 +86,14 @@
                 <div class="widget-1 widget-banner">
                     <div class="widget-1-body">
                         <a href="#0">
-                            <img src="./assets/images/sidebar/banner/banner01.jpg" alt="banner">
+                            <img src="./assets/images/sidebar/banner/banner01.jpg" alt="banner" />
                         </a>
-                    </div>
-                </div>
-                <div class="widget-1 widget-trending-search">
-                    <h3 class="title">Trending Searches</h3>
-                    <div class="widget-1-body">
-                        <ul>
-                            <li>
-                                <h6 class="sub-title">
-                                    <a href="#0">mars</a>
-                                </h6>
-                                <p>Movies</p>
-                            </li>
-                            <li>
-                                <h6 class="sub-title">
-                                    <a href="#0">alone</a>
-                                </h6>
-                                <p>Movies</p>
-                            </li>
-                            <li>
-                                <h6 class="sub-title">
-                                    <a href="#0">music event</a>
-                                </h6>
-                                <p>event</p>
-                            </li>
-                            <li>
-                                <h6 class="sub-title">
-                                    <a href="#0">NBA Games 2020</a>
-                                </h6>
-                                <p>Sports</p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <div class="widget-1 widget-banner">
                     <div class="widget-1-body">
                         <a href="#0">
-                            <img src="./assets/images/sidebar/banner/banner02.jpg" alt="banner">
+                            <img src="./assets/images/sidebar/banner/banner03.jpg" alt="banner" />
                         </a>
                     </div>
                 </div>

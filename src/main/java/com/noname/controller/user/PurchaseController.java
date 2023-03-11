@@ -5,7 +5,11 @@
 package com.noname.controller.user;
 
 import com.noname.config.Utils;
-import com.noname.database.DBQuery;
+import com.noname.database.DBBooking;
+import com.noname.database.DBCategory;
+import com.noname.database.DBFilm;
+import com.noname.database.DBSchedule;
+import com.noname.database.DBTicket;
 import com.noname.database.Transaction;
 import com.noname.model.Booking_detail;
 import com.noname.model.Film;
@@ -33,20 +37,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class PurchaseController {
 
-    DBQuery dbq = new DBQuery();
+    DBBooking dbBooking = new DBBooking();
+    DBCategory dbCategory = new DBCategory();
+    DBFilm dbFilm = new DBFilm();
+    DBSchedule dbSchedule = new DBSchedule();
+    DBTicket dbTicket = new DBTicket();
 
     @RequestMapping(value = "/tickets")
     public String Tickets(@RequestParam(required = false) String film_id, @RequestParam(required = false) String date, Model model) {
         try {
             int fid = Integer.parseInt(film_id);
-            Film f = dbq.GetFilm(fid);
+            Film f = dbFilm.GetFilm(fid);
             if (f == null) {
                 return "redirect:/";
             }
             model.addAttribute("title", "Chọn lịch phim " + f.getName());
             model.addAttribute("film", f);
-            model.addAttribute("categories", dbq.GetCategoriesByFilmId(fid));
-            model.addAttribute("schedules", dbq.GetSchedulesByFilmIdByDate(fid, date));
+            model.addAttribute("categories", dbCategory.GetCategoriesByFilmId(fid));
+            model.addAttribute("schedules", dbSchedule.GetSchedulesByFilmIdByDate(fid, date));
 
             LocalDate today = LocalDate.now(ZoneId.of(Utils.TZ));
             List<String> dates = new ArrayList<>();
@@ -65,18 +73,18 @@ public class PurchaseController {
     public String Seats(@RequestParam(required = false) String id, Model model) {
         try {
             int sid = Integer.parseInt(id);
-            Schedule s = dbq.GetSchedule(sid);
+            Schedule s = dbSchedule.GetSchedule(sid);
             if (s == null) {
                 return "redirect:/";
             }
-            Film f = dbq.GetFilm(s.getFilm_id());
+            Film f = dbFilm.GetFilm(s.getFilm_id());
             model.addAttribute("title", "Chọn vị trí ngồi phim " + f.getName());
             model.addAttribute("film", f);
             model.addAttribute("schedule", s);
-            model.addAttribute("tickets", dbq.GetTickets());
+            model.addAttribute("tickets", dbTicket.GetTickets());
 
             HashMap<String, String> booking_details = new HashMap<>();
-            for (Booking_detail ele : dbq.GetBookingDetailsByScheduleId(sid)) {
+            for (Booking_detail ele : dbBooking.GetBookingDetailsByScheduleId(sid)) {
                 booking_details.put(ele.getSeat(), ele.getSeat());
             }
             model.addAttribute("booking_details", booking_details);
@@ -91,16 +99,16 @@ public class PurchaseController {
     public String Purchase(@RequestParam(required = false) String schedule_id, @RequestParam(required = false) String seats, Model model) {
         try {
             int sid = Integer.parseInt(schedule_id);
-            Schedule s = dbq.GetSchedule(sid);
+            Schedule s = dbSchedule.GetSchedule(sid);
             if (s == null) {
                 return "redirect:/";
             }
-            Film f = dbq.GetFilm(s.getFilm_id());
+            Film f = dbFilm.GetFilm(s.getFilm_id());
             model.addAttribute("title", "Thanh toán vé phim " + f.getName());
             model.addAttribute("film", f);
             model.addAttribute("schedule", s);
 
-            List<Ticket> tickets = dbq.GetTickets();
+            List<Ticket> tickets = dbTicket.GetTickets();
             String[] listSeats = seats.split(",");
             List<Ticket> listSeat1 = new ArrayList<>();
             List<Ticket> listSeat2 = new ArrayList<>();
@@ -157,17 +165,17 @@ public class PurchaseController {
 
         try {
             int sid = Integer.parseInt(schedule_id);
-            Schedule s = dbq.GetSchedule(sid);
+            Schedule s = dbSchedule.GetSchedule(sid);
             if (s == null) {
                 return "redirect:/";
             }
 
             HashMap<String, String> booking_details = new HashMap<>();
-            for (Booking_detail ele : dbq.GetBookingDetailsByScheduleId(sid)) {
+            for (Booking_detail ele : dbBooking.GetBookingDetailsByScheduleId(sid)) {
                 booking_details.put(ele.getSeat(), ele.getSeat());
             }
 
-            List<Ticket> tickets = dbq.GetTickets();
+            List<Ticket> tickets = dbTicket.GetTickets();
             String[] listSeats = seats.split(",");
             int total_price = 0;
             Transaction dbTrans = new Transaction();

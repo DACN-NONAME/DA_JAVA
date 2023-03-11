@@ -5,7 +5,7 @@
         <div class="footer-top">
             <div class="logo">
                 <a href="index-1.html">
-                    <img src=".<c:url value="/assets/images/footer/footer-logo.png" />" alt="footer">
+                    <img src="<c:url value="/assets/images/footer/footer-logo.png" />" alt="footer" />
                 </a>
             </div>
             <ul class="social-icons">

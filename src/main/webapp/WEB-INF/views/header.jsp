@@ -1,4 +1,4 @@
-<%@page import="com.noname.database.DBQuery"%>
+<%@page import="com.noname.database.DBCategory"%>
 <%@page import="java.util.List"%>
 <%@page import="com.noname.model.Category"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -70,8 +70,8 @@
                             <a href="#">Thể loại</a>
                             <ul class="submenu">
                                 <%
-                                    DBQuery dbq = new DBQuery();
-                                    for (Category ele : dbq.GetCategories()) {
+                                    DBCategory dbCategory = new DBCategory();
+                                    for (Category ele : dbCategory.GetCategories()) {
                                 %>
                                 <li><a href="./films?category_id=<%= ele.getId()%>"><%= ele.getName()%></a></li>
                                     <%

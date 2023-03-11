@@ -16,7 +16,7 @@
                     <b>${film.rated_name}</b>
                 </div>
                 <c:forEach items="${categories}" var="category">
-                    <a href="#0" class="button">${category.name}</a>
+                    <a href="./films?category_id=${category.id}" class="button">${category.name}</a>
                 </c:forEach>
                 <div class="social-and-duration">
                     <div class="duration-area">
