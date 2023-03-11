@@ -410,6 +410,31 @@ public class DBQuery {
         return list;
     }
 
+    public Country GetCountry(int id) {
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM country WHERE id = " + id);
+        for (Map<String, Object> ele : ls) {
+            Country c = new Country();
+            c.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            c.setName(String.valueOf(ele.get("name")));
+            return c;
+        }
+        return null;
+    }
+
+    public boolean InsertCountry(Country country) {
+        String[] params = new String[]{country.getName()};
+        return db.Update("INSERT INTO country(name) VALUES(?)", params) > 0;
+    }
+
+    public boolean UpdateCountry(Country country) {
+        String[] params = new String[]{country.getName(), String.valueOf(country.getId())};
+        return db.Update("UPDATE country SET name = ? WHERE id = ?", params) > 0;
+    }
+
+    public boolean DeleteCountry(int id) {
+        return db.Update("DELETE FROM country WHERE id = " + id) > 0;
+    }
+
     public int GetProfit() {
         List<Map<String, Object>> ls = db.Query("SELECT SUM(total_price) AS total FROM booking");
         try {
