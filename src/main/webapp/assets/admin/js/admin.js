@@ -61,20 +61,19 @@ $(document).ready(function () {
 	/*==============================
 	Select2
 	==============================*/
-	$('#quality').select2({
-		placeholder: "Choose quality",
-		allowClear: true
-	});
-
 	$('#country').select2({
 		placeholder: "Choose country / countries"
+	});
+
+	$('#rated').select2({
+		placeholder: "Choose rated"
 	});
 
 	$('#genre').select2({
 		placeholder: "Choose genre / genres"
 	});
 
-	$('#subscription, #rights').select2();
+	$('#category, #cinema, #room').select2();
 
 	/*==============================
 	Upload cover

@@ -99,7 +99,7 @@ public class Transaction {
         return pstmt.executeUpdate();
     }
 
-    public int GetIdByStmt() throws SQLException {
+    public int GetIdStmt() throws SQLException {
         ResultSet rs = stmt.getGeneratedKeys();
         if (rs.next()) {
             return rs.getInt(1);
@@ -107,7 +107,7 @@ public class Transaction {
         return 0;
     }
 
-    public int GetIdByPstmt() throws SQLException {
+    public int GetIdPstmt() throws SQLException {
         ResultSet rs = pstmt.getGeneratedKeys();
         if (rs.next()) {
             return rs.getInt(1);

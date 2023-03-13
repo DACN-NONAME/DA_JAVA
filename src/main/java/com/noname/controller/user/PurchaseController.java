@@ -43,8 +43,8 @@ public class PurchaseController {
     DBSchedule dbSchedule = new DBSchedule();
     DBTicket dbTicket = new DBTicket();
 
-    @RequestMapping(value = "/tickets")
-    public String Tickets(@RequestParam(required = false) String film_id, @RequestParam(required = false) String date, Model model) {
+    @RequestMapping(value = "/schedules")
+    public String Schedules(@RequestParam(required = false) String film_id, @RequestParam(required = false) String date, Model model) {
         try {
             int fid = Integer.parseInt(film_id);
             Film f = dbFilm.GetFilm(fid);
@@ -63,7 +63,7 @@ public class PurchaseController {
             }
             model.addAttribute("dates", dates);
 
-            return "tickets";
+            return "schedules";
         } catch (NumberFormatException ex) {
             return "redirect:/";
         }
@@ -184,7 +184,7 @@ public class PurchaseController {
                 dbTrans.begin();
                 LocalDate today = LocalDate.now(ZoneId.of(Utils.TZ));
                 dbTrans.UpdatePstmt("INSERT INTO booking(user_id, schedule_id, total_price, created_at) VALUES(?, ?, ?, ?)", new String[]{String.valueOf(user.getId()), schedule_id, "0", today.toString()});
-                int booking_id = dbTrans.GetIdByPstmt();
+                int booking_id = dbTrans.GetIdPstmt();
                 if (booking_id == 0) {
                     throw new SQLException("Last inserted ID invalid.");
                 }

@@ -11,17 +11,8 @@ package com.noname.model;
  */
 public class Category_film {
 
-    private int id;
     private int category_id;
     private int film_id;
-
-    public int getId() {
-        return id;
-    }
-    
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getCategoryId() {
         return category_id;
@@ -38,7 +29,4 @@ public class Category_film {
     public void setFilmId(int film_id) {
         this.film_id = film_id;
     }
-    
-    public Category_film(){}
-
 }

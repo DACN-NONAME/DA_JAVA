@@ -61,10 +61,10 @@
                     </div>
                     <ul class="menu">
                         <li>
-                            <a href="./">Home</a>
+                            <a href="<c:url value="/" />">Home</a>
                         </li>
                         <li>
-                            <a href="./films">Phim</a>
+                            <a href="<c:url value="/films" />">Phim</a>
                         </li>
                         <li>
                             <a href="#">Thể loại</a>

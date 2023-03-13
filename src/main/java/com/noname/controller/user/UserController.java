@@ -4,6 +4,7 @@
  */
 package com.noname.controller.user;
 
+import com.noname.config.Utils;
 import com.noname.database.DBBooking;
 import com.noname.database.DBFilm;
 import com.noname.database.DBSchedule;
@@ -42,6 +43,8 @@ public class UserController {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
         }
+        User u = (User) session.getAttribute("user");
+        model.addAttribute("count_bookings", dbBooking.GetCountBookingsByUserId(u.getId()));
         return "profile";
     }
 
@@ -55,6 +58,34 @@ public class UserController {
         user.setEmail(u.getEmail());
         if (dbUser.UpdateUser(user)) {
             session.setAttribute("user", user);
+        }
+        return "profile";
+    }
+
+    @RequestMapping(value = "/profile/changepass")
+    public String UpdateProfilePassword(HttpSession session, Model model) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/";
+        }
+        return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/profile/changepass", method = RequestMethod.POST)
+    public String UpdateProfilePassword(HttpSession session, @ModelAttribute() User user, @RequestParam("password2") String password2, @RequestParam("repassword2") String repassword2, Model model) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/";
+        }
+        User u = (User) session.getAttribute("user");
+        u = dbUser.GetUser(u.getId());
+        if (u.getPassword().equals(Utils.SHA1(user.getPassword()))) {
+            if (password2.equals(repassword2)) {
+                dbUser.ChangePass(u.getId(), password2);
+                return "redirect:/profile";
+            } else {
+                model.addAttribute("msg", "Mật khẩu nhập lại không đúng!");
+            }
+        } else {
+            model.addAttribute("msg", "Mật khẩu cũ không đúng!");
         }
         return "profile";
     }

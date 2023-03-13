@@ -51,6 +51,22 @@ public class DBUser {
         return null;
     }
 
+    public User GetUser(int id) {
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM user WHERE id = " + id);
+        for (Map<String, Object> ele : ls) {
+            User u = new User();
+            u.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            u.setFull_name(String.valueOf(ele.get("full_name")));
+            u.setEmail(String.valueOf(ele.get("email")));
+            u.setPassword(String.valueOf(ele.get("password")));
+            u.setPhone(String.valueOf(ele.get("phone")));
+            u.setAddress(String.valueOf(ele.get("address")));
+            u.setCreated_at(String.valueOf(ele.get("created_at")).replace("T", " "));
+            return u;
+        }
+        return null;
+    }
+
     public List<User> GetUsers() {
         List<Map<String, Object>> ls = db.Query("SELECT * FROM user ORDER BY id DESC");
         List<User> list = new ArrayList<>();
@@ -69,6 +85,11 @@ public class DBUser {
     public boolean UpdateUser(User user) {
         String[] params = new String[]{user.getFull_name(), user.getPhone(), user.getAddress(), String.valueOf(user.getId())};
         return db.Update("UPDATE user SET full_name = ?, phone = ?, address = ? WHERE id = ?", params) > 0;
+    }
+
+    public boolean ChangePass(int id, String password) {
+        String[] params = new String[]{Utils.SHA1(password), String.valueOf(id)};
+        return db.Update("UPDATE user SET password = ? WHERE id = ?", params) > 0;
     }
 
     public int GetCountUsers() {

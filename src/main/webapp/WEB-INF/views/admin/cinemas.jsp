@@ -7,8 +7,8 @@
             <!-- main title -->
             <div class="col-12">
                 <div class="main__title">
-                    <h2>Danh sách phim</h2>
-                    <!--<span class="main__title-stat">14,452 Total</span>-->
+                    <h2>Danh sách rạp</h2>
+                    <a href="<c:url value="/admin/cinema" />" class="main__title-link">Thêm mới</a>
                 </div>
             </div>
             <!-- end main title -->
@@ -19,42 +19,31 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>HỌ TÊN</th>
-                                <th>EMAIL</th>
-                                <th>SDT</th>
-                                <th>NGÀY TẠO</th>
+                                <th>TÊN</th>
+                                <th>ĐỊA CHỈ</th>
                                 <th>ACTIONS</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${users}" var="user">
+                            <c:forEach items="${cinemas}" var="cinema">
                                 <tr>
                                     <td>
-                                        <div class="main__table-text">${user.id}</div>
+                                        <div class="main__table-text">${cinema.id}</div>
                                     </td>
                                     <td>
-                                        <div class="main__table-text">${user.full_name}</div>
+                                        <div class="main__table-text">${cinema.name}</div>
                                     </td>
                                     <td>
-                                        <div class="main__table-text">${user.email}</div>
-                                    </td>
-                                    <td>
-                                        <div class="main__table-text">${user.phone}</div>
-                                    </td>
-                                    <td>
-                                        <div class="main__table-text">${user.created_at}</div>
+                                        <div class="main__table-text">${cinema.address}</div>
                                     </td>
                                     <td>
                                         <div class="main__table-btns">
-                                            <a href="<c:url value="/admin/user?id=${user.id}" />" class="main__table-btn main__table-btn--view">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.92,11.6C19.9,6.91,16.1,4,12,4S4.1,6.91,2.08,11.6a1,1,0,0,0,0,.8C4.1,17.09,7.9,20,12,20s7.9-2.91,9.92-7.6A1,1,0,0,0,21.92,11.6ZM12,18c-3.17,0-6.17-2.29-7.9-6C5.83,8.29,8.83,6,12,6s6.17,2.29,7.9,6C18.17,15.71,15.17,18,12,18ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Z"/></svg>
+                                            <a href="<c:url value="/admin/cinema?id=${cinema.id}" />" class="main__table-btn main__table-btn--edit">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"/></svg>
                                             </a>
-                                            <!--                                            <a href="add-item.html" class="main__table-btn main__table-btn--edit">
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"/></svg>
-                                                                                        </a>
-                                                                                        <a href="#modal-delete" class="main__table-btn main__table-btn--delete open-modal">
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/></svg>
-                                                                                        </a>-->
+                                            <a href="#modal-delete" onclick="setDeleteItem(${cinema.id})" class="main__table-btn main__table-btn--delete open-modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/></svg>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -90,24 +79,13 @@
 </main>
 <!-- end main content -->
 
-<!-- modal status -->
-<div id="modal-status" class="zoom-anim-dialog mfp-hide modal">
-    <h6 class="modal__title">Status change</h6>
-    <p class="modal__text">Are you sure about immediately change status?</p>
-    <div class="modal__btns">
-        <button class="modal__btn modal__btn--apply" type="button">Apply</button>
-        <button class="modal__btn modal__btn--dismiss" type="button">Dismiss</button>
-    </div>
-</div>
-<!-- end modal status -->
-
 <!-- modal delete -->
 <div id="modal-delete" class="zoom-anim-dialog mfp-hide modal">
-    <h6 class="modal__title">Item delete</h6>
-    <p class="modal__text">Are you sure to permanently delete this item?</p>
+    <h6 class="modal__title">Thông báo</h6>
+    <p class="modal__text">Bạn có muốn xoá dữ liệu này không? Không thể xoá dữ liệu đã có liên kết.</p>
     <div class="modal__btns">
-        <button class="modal__btn modal__btn--apply" type="button">Delete</button>
-        <button class="modal__btn modal__btn--dismiss" type="button">Dismiss</button>
+        <button class="modal__btn modal__btn--apply" type="button" onclick="deleteItem('<c:url value="/admin/cinema/delete?id=" />' + item_id, '<c:url value="/admin/cinemas" />')">Xoá</button>
+        <button class="modal__btn modal__btn--dismiss" type="button">Đóng</button>
     </div>
 </div>
 <!-- end modal delete -->

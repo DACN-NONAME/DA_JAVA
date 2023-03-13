@@ -34,7 +34,7 @@
                             <!-- authorization form -->
                             <form action="" method="POST" class="sign__form">
                                 <a href="index.html" class="sign__logo">
-                                    <img src="<c:url value="/assets/admin/img/logo.svg" />" alt="" />
+                                    <img src="<c:url value="/assets/admin/img/logo.png" />" alt="" />
                                 </a>
                                 <div class="sign__group">
                                     <input type="text" class="sign__input" placeholder="tên đăng nhập" name="email" />

@@ -26,4 +26,20 @@ public class DBTicket {
         return list;
     }
 
+    public Ticket GetTicket(int id) {
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM ticket WHERE id = " + id);
+        for (Map<String, Object> ele : ls) {
+            Ticket t = new Ticket();
+            t.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            t.setPrice(Integer.parseInt(String.valueOf(ele.get("price"))));
+            t.setType(String.valueOf(ele.get("type")));
+            return t;
+        }
+        return null;
+    }
+
+    public boolean UpdateTicket(Ticket ticket) {
+        String[] params = new String[]{String.valueOf(ticket.getPrice()), String.valueOf(ticket.getId())};
+        return db.Update("UPDATE ticket SET price = ? WHERE id = ?", params) > 0;
+    }
 }

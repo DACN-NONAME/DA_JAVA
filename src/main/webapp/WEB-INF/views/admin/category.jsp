@@ -19,8 +19,8 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-6">
-                                    <input type="hidden" value="${country.id}" name="id" />
-                                    <input type="text" class="form__input" placeholder="Title" value="${country.name}" name="name" required />
+                                    <input type="hidden" value="${category.id}" name="id" />
+                                    <input type="text" class="form__input" placeholder="Title" value="${category.name}" name="name" required />
                                 </div>
                             </div>
                         </div>

@@ -93,4 +93,17 @@ public class DBSchedule {
         return list;
     }
 
+    public boolean InsertSchedule(Schedule schedule) {
+        String[] params = new String[]{String.valueOf(schedule.getFilm_id()), String.valueOf(schedule.getCinema_id()), String.valueOf(schedule.getRoom_id()), schedule.getStart_time()};
+        return db.Update("INSERT INTO schedule(film_id, cinema_id, room_id, start_time) VALUES(?, ?, ?, ?)", params) > 0;
+    }
+
+    public boolean UpdateSchedule(Schedule schedule) {
+        String[] params = new String[]{String.valueOf(schedule.getFilm_id()), String.valueOf(schedule.getCinema_id()), String.valueOf(schedule.getRoom_id()), schedule.getStart_time(), String.valueOf(schedule.getId())};
+        return db.Update("UPDATE schedule SET film_id = ?, cinema_id = ?, room_id = ?, start_time = ? WHERE id = ?", params) > 0;
+    }
+
+    public boolean DeleteSchedule(int id) {
+        return db.Update("DELETE FROM schedule WHERE id = " + id) > 0;
+    }
 }

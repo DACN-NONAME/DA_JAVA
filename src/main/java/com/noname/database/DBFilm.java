@@ -6,6 +6,7 @@ package com.noname.database;
 
 import com.noname.config.Utils;
 import com.noname.model.Film;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -99,6 +100,72 @@ public class DBFilm {
             return f;
         }
         return null;
+    }
+
+    public void InsertFilm(Film film, List<String> categories_selected) {
+        Transaction dbTrans = new Transaction();
+        try {
+            dbTrans.begin();
+            String created_at = Utils.StrDate();
+            String[] params = new String[]{film.getName(), film.getPoster(), film.getTrailer(), film.getDirector(), film.getActor(), film.getOpening_day(), film.getDescription(),
+                String.valueOf(film.getDuration()), String.valueOf(film.getCountry_id()), String.valueOf(film.getRated_id()), created_at};
+            if (dbTrans.UpdatePstmt("INSERT INTO film(name, poster, trailer, director, actor, opening_day, description, duration, country_id, rated_id, created_at) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params) > 0) {
+                int film_id = dbTrans.GetIdPstmt();
+                for (String ele : categories_selected) {
+                    dbTrans.Update("INSERT INTO category_film(category_id, film_id) VALUES(?, ?)", new String[]{ele, String.valueOf(film_id)});
+                }
+                dbTrans.commit();
+            } else {
+                dbTrans.rollback();
+            }
+        } catch (SQLException ex) {
+            dbTrans.rollback();
+            System.out.println("error transaction: " + ex);
+        } finally {
+            dbTrans.finish();
+        }
+    }
+
+    public boolean UpdateFilm(Film film) {
+        String updated_at = Utils.StrDate();
+        String[] params = new String[]{film.getName(), film.getPoster(), film.getTrailer(), film.getDirector(), film.getActor(), film.getOpening_day(), film.getDescription(),
+            String.valueOf(film.getDuration()), String.valueOf(film.getCountry_id()), String.valueOf(film.getRated_id()), updated_at, String.valueOf(film.getId())};
+        return db.Update("UPDATE film SET name = ?, poster = ?, trailer = ?, director = ?, actor = ?, opening_day = ?, description = ?, duration = ?, country_id = ?, rated_id = ?, updated_at = ? WHERE id = ?", params) > 0;
+    }
+
+    public void UpdateFilmCategories(int film_id, ArrayList<String> categories_selected) {
+        Transaction dbTrans = new Transaction();
+        try {
+            dbTrans.begin();
+            dbTrans.Update("DELETE FROM category_film WHERE film_id = " + film_id);
+            for (String ele : categories_selected) {
+                if (dbTrans.Update("INSERT INTO category_film(category_id, film_id) VALUES(?, ?)", new String[]{ele, String.valueOf(film_id)}) <= 0) {
+                    dbTrans.rollback();
+                }
+            }
+            dbTrans.commit();
+        } catch (SQLException ex) {
+            dbTrans.rollback();
+            System.out.println("error transaction: " + ex);
+        } finally {
+            dbTrans.finish();
+        }
+    }
+
+    public void DeleteFilm(int id) {
+        Transaction dbTrans = new Transaction();
+        try {
+            dbTrans.begin();
+            dbTrans.Update("DELETE FROM category_film WHERE film_id = " + id);
+            dbTrans.Update("DELETE FROM film WHERE id = " + id);
+            dbTrans.commit();
+        } catch (SQLException ex) {
+            dbTrans.rollback();
+            System.out.println("error transaction: " + ex);
+        } finally {
+            dbTrans.finish();
+        }
+//        return db.Update("DELETE FROM film WHERE id = " + id) > 0;
     }
 
     public int GetCountFilms() {

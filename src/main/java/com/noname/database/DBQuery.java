@@ -4,16 +4,7 @@
  */
 package com.noname.database;
 
-import com.noname.config.Utils;
-import com.noname.model.Booking;
-import com.noname.model.Booking_detail;
-import com.noname.model.Category;
-import com.noname.model.Country;
-import com.noname.model.Film;
-import com.noname.model.Room;
-import com.noname.model.Schedule;
-import com.noname.model.Ticket;
-import com.noname.model.User;
+import com.noname.model.Rated;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +27,18 @@ public class DBQuery {
             System.out.println("error get profit: " + ex.toString());
         }
         return 0;
+    }
+
+    public List<Rated> GetListRated() {
+        List<Map<String, Object>> ls = db.Query("SELECT * FROM rated");
+        List<Rated> list = new ArrayList<>();
+        for (Map<String, Object> ele : ls) {
+            Rated r = new Rated();
+            r.setId(Integer.parseInt(String.valueOf(ele.get("id"))));
+            r.setName(String.valueOf(ele.get("name")));
+            list.add(r);
+        }
+        return list;
     }
 
 }

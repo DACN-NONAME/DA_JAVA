@@ -111,4 +111,15 @@ public class DBBooking {
         return 0;
     }
 
+    public int GetCountBookingsByUserId(int user_id) {
+        List<Map<String, Object>> ls = db.Query("SELECT COUNT(id) AS total FROM booking WHERE user_id = " + user_id);
+        try {
+            for (Map<String, Object> ele : ls) {
+                return Integer.parseInt(String.valueOf(ele.get("total")));
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("error get count bookings by user_id: " + ex.toString());
+        }
+        return 0;
+    }
 }
