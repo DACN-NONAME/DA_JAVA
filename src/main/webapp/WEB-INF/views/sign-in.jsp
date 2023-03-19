@@ -20,7 +20,7 @@
 
         <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
-        <title>Boleto  - Đăng ký</title>
+        <title>Boleto  - Đăng nhập</title>
 
 
     </head>

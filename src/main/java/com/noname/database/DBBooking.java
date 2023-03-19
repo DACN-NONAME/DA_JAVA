@@ -50,7 +50,7 @@ public class DBBooking {
     }
 
     public List<Booking> GetBookingsByUserId(int uid) {
-        List<Map<String, Object>> ls = db.Query("SELECT B.*, F.id AS film_id, F.name AS film_name, F.poster AS film_poster FROM booking B LEFT JOIN schedule S ON B.schedule_id = S.id LEFT JOIN film F ON S.film_id = F.id WHERE B.user_id = " + uid);
+        List<Map<String, Object>> ls = db.Query("SELECT B.*, F.id AS film_id, F.name AS film_name, F.poster AS film_poster FROM booking B LEFT JOIN schedule S ON B.schedule_id = S.id LEFT JOIN film F ON S.film_id = F.id WHERE B.user_id = " + uid + " ORDER BY B.id DESC");
         List<Booking> list = new ArrayList<>();
         for (Map<String, Object> ele : ls) {
             Booking b = new Booking();

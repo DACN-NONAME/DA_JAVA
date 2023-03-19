@@ -205,9 +205,11 @@ public class PurchaseController {
 
                         Ticket t = new Ticket();
                         t.setSeat(String.valueOf(c_row) + n_col);
-                        if (!booking_details.get(t.getSeat()).equals("")) {
-                            msg = "Có chỗ ngồi đã được đặt.";
-                            throw new SQLException(msg);
+                        if (booking_details.get(t.getSeat()) != null) {
+                            if (!booking_details.get(t.getSeat()).equals("")) {
+                                msg = "Có chỗ ngồi đã được đặt.";
+                                throw new SQLException(msg);
+                            }
                         }
                         t.setPrice(0);
                         if ('A' <= c_row && c_row <= 'D') {
