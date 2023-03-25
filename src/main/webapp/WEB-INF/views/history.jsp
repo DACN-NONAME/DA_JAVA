@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="movie-content bg-one">
                                         <h5 class="title m-0">
-                                            <a href="event-details.html">${booking.film_name}</a>
+                                            <a href="./booking-detail?id=${booking.id}">${booking.film_name}</a>
                                         </h5>
                                         <div class="movie-rating-percent">
                                             <span>${booking.created_at}</span>
