@@ -17,7 +17,7 @@ public class Utils {
 
     public static String TZ = "Asia/Ho_Chi_Minh";
     public static String DB_MYSQL = "jdbc:mysql://pma.phatnef.me/phatdevx_dat_ve_phim?user=phatdevx_noname&password=Noname@2023&useSSL=false&useUnicode=true&characterEncoding=UTF-8";
-    public static int LIMIT_ROWS = 10;
+    public static int LIMIT_ROWS = 9;
 
     public static int Page(String page) {
         try {

@@ -73,38 +73,6 @@
             </div>
             <div class="col-lg-9 mb-50 mb-lg-0">
                 <div class="filter-tab tab">
-                    <div class="filter-area">
-                        <div class="filter-main">
-                            <div class="left">
-                                <div class="item">
-                                    <span class="show">Show :</span>
-                                    <select class="select-bar">
-                                        <option value="12">12</option>
-                                        <option value="15">15</option>
-                                        <option value="18">18</option>
-                                        <option value="21">21</option>
-                                        <option value="24">24</option>
-                                        <option value="27">27</option>
-                                        <option value="30">30</option>
-                                    </select>
-                                </div>
-                                <div class="item">
-                                    <span class="show">Sort By :</span>
-                                    <select class="select-bar">
-                                        <option value="showing">now showing</option>
-                                        <option value="exclusive">exclusive</option>
-                                        <option value="trending">trending</option>
-                                        <option value="most-view">most view</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <ul class="grid-button tab-menu">
-                                <li class="active">
-                                    <i class="fas fa-th"></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                     <div class="tab-area">
                         <div class="tab-item active">
                             <div class="row mb-10 justify-content-center">
