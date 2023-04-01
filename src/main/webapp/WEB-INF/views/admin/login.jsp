@@ -20,7 +20,7 @@
 
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <meta name="author" content="Dmitry Volkov" />
+        <meta name="author" content="" />
         <title>Admin - Đăng nhập</title>
 
     </head>

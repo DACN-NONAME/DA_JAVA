@@ -116,6 +116,7 @@ public class UserController {
                 return "redirect:/";
             }
             Film f = dbFilm.GetFilm(b.getFilm_id());
+            model.addAttribute("created_at", b.getCreated_at().split(" ")[0]);
             model.addAttribute("title", "Thanh toán vé phim " + f.getName());
             model.addAttribute("film", f);
             model.addAttribute("schedule", dbSchedule.GetSchedule(b.getSchedule_id()));

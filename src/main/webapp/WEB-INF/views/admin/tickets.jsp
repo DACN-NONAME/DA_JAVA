@@ -75,5 +75,4 @@
     </div>
 </main>
 <!-- end main content -->
-
 <jsp:include page="footer.jsp" />

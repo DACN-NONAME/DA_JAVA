@@ -67,6 +67,10 @@
                             <h6 class="subtitle"><span>${schedule.cinema_name}</span><span>${schedule.room_name}</span></h6>
                             <div class="info"><span>${schedule.start_time}</span> <span>Rạp</span></div>
                         </li>
+                        <li>
+                            <h6 class="subtitle">Ngày đặt vé</h6>
+                            <div class="info"><span>${created_at}</span></div>
+                        </li>
                     </ul>
                     <ul class="side-shape">
                         <c:if test="${not empty seats1}">
